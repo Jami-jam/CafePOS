@@ -288,7 +288,6 @@ public class Menu {
 				panelHot.setVisible(false);
 				panelNon.setVisible(false);
 				panelPastries.setVisible(false);
-				panel_1.setVisible(false);
 			}
 		});
 		

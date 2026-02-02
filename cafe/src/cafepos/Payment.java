@@ -40,8 +40,6 @@ public class Payment {
 	 */
 	public Payment() {
 		initialize();
-		receiptArea = new JTextArea(); 
-		frame.add(new JScrollPane(receiptArea), BorderLayout.LEADING);
 	}
 
 	/**
