@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.LinkedHashMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -17,86 +18,105 @@ import javax.swing.JTextArea;
 
 public class Payment {
 
-	private JFrame frame;
+    private JFrame frame;
+    private JTextArea textAreaOrder;
+    private JScrollPane scrollPane;
+    private JLabel lblTotalAmount;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Payment window = new Payment();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public Payment() {
-		initialize();
-	}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Payment window = new Payment();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(0, 0, 768, 1024);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JButton btnNo = new JButton("Back");
-		btnNo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    Menu mainApp = new Menu();
-			    mainApp.setVisible(true);
-			    frame.dispose();
-			}
-		});
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(100, 111, 541, 377);
-		frame.getContentPane().add(textArea);
-		btnNo.setBounds(169, 588, 149, 67);
-		frame.getContentPane().add(btnNo);
-		
-		JButton btnYes = new JButton("Continue");
-		btnYes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Receipt receipt = new Receipt();
-			    receipt.setVisible(true);
-			    frame.dispose();
-			}
-		});
-		btnYes.setBounds(439, 588, 149, 67);
-		frame.getContentPane().add(btnYes);
-		
-		JLabel lblNewLabel = new JLabel("CHECK OUT");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(24, 29, 149, 59);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("TOTAL:");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(68, 499, 88, 34);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(325, 546, 88, 34);
-		frame.getContentPane().add(lblNewLabel_1_1);
-	}
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		frame.setVisible(b);
-	}
+    public Payment() {
+        textAreaOrder = new JTextArea(8, 20);
+        scrollPane = new JScrollPane(textAreaOrder);
+        initialize();
+    }
+
+    public Payment(double total, LinkedHashMap<String, Double> order) {
+        textAreaOrder = new JTextArea(8, 20);
+        scrollPane = new JScrollPane(textAreaOrder);
+        initialize(total, order);
+        Receipt receipt = new Receipt();  // Remove parameters
+    }
+
+    private void initialize() {
+        initialize(0.0, new LinkedHashMap<String, Double>());
+    }
+
+    private void initialize(double total, LinkedHashMap<String, Double> order) {
+        frame = new JFrame();
+        frame.setBounds(0, 0, 768, 1024);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        JLabel lblCheckout = new JLabel("CHECK OUT");
+        lblCheckout.setFont(new Font("Tahoma", Font.PLAIN, 25));
+        lblCheckout.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCheckout.setBounds(24, 29, 149, 59);
+        frame.getContentPane().add(lblCheckout);
+
+        lblTotalAmount = new JLabel("₱0.00");
+        lblTotalAmount.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTotalAmount.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTotalAmount.setBounds(325, 499, 150, 34);
+        frame.getContentPane().add(lblTotalAmount);
+
+        JLabel lblTotal = new JLabel("TOTAL:");
+        lblTotal.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTotal.setBounds(68, 499, 88, 34);
+        frame.getContentPane().add(lblTotal);
+
+        textAreaOrder.setEditable(false);
+        scrollPane.setBounds(100, 111, 541, 377);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.getContentPane().add(scrollPane);
+
+        updateOrderDisplay(order, total);
+
+        JButton btnBack = new JButton("Back");
+        btnBack.addActionListener(e -> {
+            Menu mainApp = new Menu();
+            mainApp.setVisible(true);
+            frame.dispose();
+        });
+        btnBack.setBounds(169, 588, 149, 67);
+        frame.getContentPane().add(btnBack);
+
+        JButton btnContinue = new JButton("Continue");
+        btnContinue.addActionListener(e -> {
+            Receipt receipt = new Receipt();  // Fixed: no parameters
+            receipt.setVisible(true);
+            frame.dispose();
+        });
+        btnContinue.setBounds(439, 588, 149, 67);
+        frame.getContentPane().add(btnContinue);
+    }
+
+
+    private void updateOrderDisplay(LinkedHashMap<String, Double> order, double total) {
+        StringBuilder orderText = new StringBuilder("Order Summary:\n\n");
+        for (String item : order.keySet()) {
+            orderText.append(item).append(" - ₱").append(String.format("%.2f", order.get(item))).append("\n");
+        }
+        orderText.append("\n").append("TOTAL: ₱").append(String.format("%.2f", total));
+        textAreaOrder.setText(orderText.toString());
+        lblTotalAmount.setText("₱" + String.format("%.2f", total));
+    }
+
+
+    public void setVisible(boolean b) {
+        frame.setVisible(b);
+    }
 }

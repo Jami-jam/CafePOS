@@ -54,6 +54,7 @@ public class Welcome {
 	 */
 	public Welcome() {
 		initialize();
+		
 	}
 
 	/**
@@ -64,6 +65,7 @@ public class Welcome {
 		frame.setBounds(0, 0, 600, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+	
 		
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

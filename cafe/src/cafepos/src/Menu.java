@@ -67,6 +67,8 @@ public class Menu {
     private double total = 0.0;
     private JLabel lblTotal = new JLabel("Total: ₱0.00");
     private LinkedHashMap<String, Double> menu = new LinkedHashMap<>();
+    private JTextArea textAreaOrder = new JTextArea(8, 20);
+    private JScrollPane scrollPane = new JScrollPane();
 		
 
 	public static void main(String[] args) {	
@@ -81,16 +83,11 @@ public class Menu {
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
-	 */
-	
 	
 	public Menu() {
 		initialize();
-		  menu.put("Americano", 120.0);
+		  	menu.put("Americano", 120.0);
+		  	menu.put("Brewed", 110.0);
 		    menu.put("Spanish Latte", 160.0);
 		    menu.put("White Mocha", 155.0);
 		    menu.put("Caramel Macchiato", 165.0);
@@ -105,15 +102,13 @@ public class Menu {
 		    menu.put("Egg Tart", 70.0);
 		    menu.put("Red Velvet Cake", 170.0);
 		    menu.put("Chocolate Cookies", 80.0);
+		    menu.put("Hazelnut Mocha", 165.0);
+		    menu.put("Cafe Latte", 120.0);
+		    menu.put("Caramel Macchiato Hot", 125.0);
+		    menu.put("Caramel Macchiato Cold", 165.0);
 		
 	}
 
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	
-	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(0, 0, 768, 1024);
@@ -121,10 +116,6 @@ public class Menu {
 		frame.getContentPane().setLayout(null);
 	
 		frame.getContentPane().setLayout(null);
-
-		lblTotal.setBounds(537, 768, 190, 30);
-		lblTotal.setFont(new Font("Arial", Font.BOLD, 18));
-		frame.getContentPane().add(lblTotal);
 		
 		JPanel panelCold = new JPanel();
 		panelCold.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -132,42 +123,104 @@ public class Menu {
 		frame.getContentPane().add(panelCold);
 		panelCold.setLayout(null);
 		
-		JLabel lblHazelnutM = new JLabel("₱");
-		lblHazelnutM.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHazelnutM.setBounds(30, 638, 212, 34);
-		panelCold.add(lblHazelnutM);
+		JLabel lblWhiteMocha = new JLabel("₱ 155");
+		lblWhiteMocha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWhiteMocha.setBounds(30, 638, 212, 34);
+		panelCold.add(lblWhiteMocha);
 		
-		JLabel lblAmericanoC = new JLabel("₱");
-		lblAmericanoC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmericanoC.setBounds(285, 638, 212, 34);
-		panelCold.add(lblAmericanoC);
+		JLabel lblCaramelMC = new JLabel("₱ 165");
+		lblCaramelMC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCaramelMC.setBounds(285, 638, 212, 34);
+		panelCold.add(lblCaramelMC);
 		
-		JButton btnAmericanoC = new JButton("Americano");
-		btnAmericanoC.setBounds(275, 398, 234, 232);
-		panelCold.add(btnAmericanoC);
+		JButton btnCaramelMC = new JButton("Caramel Macchiato");
+		btnCaramelMC.setBounds(275, 398, 234, 232);
+		panelCold.add(btnCaramelMC);
+		btnCaramelMC.addActionListener(e -> addToOrder("Americano", menu.get("Caramel Macchiato Cold")));
 		
-		JButton btnHazelnutM = new JButton("Hazelnut Mocha");
-		btnHazelnutM.setBounds(20, 398, 234, 232);
-		panelCold.add(btnHazelnutM);
+		JButton btnWhiteMocha = new JButton("White Mocha");
+		btnWhiteMocha.setBounds(20, 398, 234, 232);
+		panelCold.add(btnWhiteMocha);
 		
-		JLabel lblSpanishLC = new JLabel("₱");
-		lblSpanishLC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSpanishLC.setBounds(30, 306, 212, 34);
-		panelCold.add(lblSpanishLC);
+		JLabel lblAmericano = new JLabel("₱ 120");
+		lblAmericano.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmericano.setBounds(30, 306, 212, 34);
+		panelCold.add(lblAmericano);
 		
-		JButton btnSpanishL = new JButton("Spanish Latte");
-		btnSpanishL.setBounds(20, 63, 234, 232);
-		panelCold.add(btnSpanishL);
+		JButton btnAmericano = new JButton("Americano");
+		btnAmericano.setBounds(20, 63, 234, 232);
+		panelCold.add(btnAmericano);
 		
-		JButton btnCaramel = new JButton("Caramel");
-		btnCaramel.setBounds(275, 63, 234, 232);
-		panelCold.add(btnCaramel);
+		JButton btnSpanishLatte = new JButton("Spanish Latte");
+		btnSpanishLatte.setBounds(275, 63, 234, 232);
+		panelCold.add(btnSpanishLatte);
 		
-		JLabel lblCaramel = new JLabel("₱");
-		lblCaramel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaramel.setBounds(285, 306, 212, 34);
-		panelCold.add(lblCaramel);
+		JLabel lblSpanishLatte = new JLabel("₱ 160");
+		lblSpanishLatte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpanishLatte.setBounds(285, 306, 212, 34);
+		panelCold.add(lblSpanishLatte);
 		panelCold.setVisible(false);
+		
+		JPanel panelHot = new JPanel();
+		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelHot.setBounds(197, 43, 530, 719);
+		frame.getContentPane().add(panelHot);
+		panelHot.setLayout(null);
+		panelHot.setVisible(false);
+		
+		JLabel lblCaramelMH = new JLabel("₱ 125");
+		lblCaramelMH.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCaramelMH.setBounds(285, 638, 212, 34);
+		panelHot.add(lblCaramelMH);
+		
+		JLabel lblEspresso = new JLabel("₱ 100");
+		lblEspresso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEspresso.setBounds(30, 638, 212, 34);
+		panelHot.add(lblEspresso);
+		
+		JButton btnEspresso = new JButton("Espresso");
+		btnEspresso.setBounds(20, 398, 234, 232);
+		panelHot.add(btnEspresso);
+		
+		JButton btnCaramelMH = new JButton("Caramel Macchiato");
+		btnCaramelMH.setBounds(275, 398, 234, 232);
+		panelHot.add(btnCaramelMH);
+		
+		JLabel lblCafeLatte = new JLabel("₱ 120");
+		lblCafeLatte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCafeLatte.setBounds(285, 306, 212, 34);
+		panelHot.add(lblCafeLatte);
+		
+		JButton btnCafeLatte = new JButton("CafeLatte");
+		btnCafeLatte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCafeLatte.setBounds(275, 63, 234, 232);
+		panelHot.add(btnCafeLatte);
+		
+		JButton btnBrewed = new JButton("Brewed");
+		btnBrewed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnBrewed.setBounds(20, 63, 234, 232);
+		panelHot.add(btnBrewed);
+		
+		JLabel lblBrewed = new JLabel("₱ 110");
+		lblBrewed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBrewed.setBounds(30, 306, 212, 34);
+		panelHot.add(lblBrewed);
+
+		lblTotal.setBounds(537, 768, 190, 30);
+		lblTotal.setFont(new Font("Arial", Font.BOLD, 18));
+		frame.getContentPane().add(lblTotal);
+		scrollPane.setBounds(76, 796, 426, 153);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		frame.getContentPane().add(scrollPane);
+		scrollPane.setViewportView(textAreaOrder);
+		textAreaOrder.setEditable(false);
 		
 		JPanel panelPastries = new JPanel();
 		panelPastries.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -255,54 +308,6 @@ public class Menu {
 		panelNon.add(lblClassicC);
 		panelNon.setVisible(false);
 		
-		JPanel panelHot = new JPanel();
-		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelHot.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panelHot);
-		panelHot.setLayout(null);
-		panelHot.setVisible(false);
-		
-		JLabel lblCaramelM = new JLabel("₱ 165");
-		lblCaramelM.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaramelM.setBounds(285, 638, 212, 34);
-		panelHot.add(lblCaramelM);
-		
-		JLabel lblWhiteM = new JLabel("₱ 155");
-		lblWhiteM.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWhiteM.setBounds(30, 638, 212, 34);
-		panelHot.add(lblWhiteM);
-		
-		JButton btnWhiteM = new JButton("White Mocha");
-		btnWhiteM.setBounds(20, 398, 234, 232);
-		panelHot.add(btnWhiteM);
-		
-		JButton btnCaramelM = new JButton("Caramel Macchiato");
-		btnCaramelM.setBounds(275, 398, 234, 232);
-		panelHot.add(btnCaramelM);
-		
-		JLabel lblSpanishL = new JLabel("₱ 160");
-		lblSpanishL.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSpanishL.setBounds(285, 306, 212, 34);
-		panelHot.add(lblSpanishL);
-		
-		JButton btnSpanish = new JButton("Spanish Latte");
-		btnSpanish.setBounds(275, 63, 234, 232);
-		panelHot.add(btnSpanish);
-		
-		JButton btnAmericano = new JButton("Americano");
-		btnAmericano.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnAmericano.setBounds(20, 63, 234, 232);
-		panelHot.add(btnAmericano);
-		
-		JLabel lblAmericano = new JLabel("₱ 120");
-		lblAmericano.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmericano.setBounds(30, 306, 212, 34);
-		panelHot.add(lblAmericano);
-		
 		JButton btnCold = new JButton("Cold");
 		btnCold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -362,10 +367,11 @@ public class Menu {
 		
 		JButton btnCont = new JButton("Continue");
 		btnCont.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    Payment rec = new Payment();
-			    rec.setVisible(true);
-			    frame.dispose();
+			public void actionPerformed(ActionEvent e) {{
+				    Payment payment = new Payment(total, order);
+				    payment.setVisible(true);
+				    frame.setVisible(false);  
+				}
 			}
 		});
 		btnCont.setBounds(537, 822, 190, 91);
@@ -378,6 +384,28 @@ public class Menu {
 		frame.getContentPane().add(lblMenu);
 	}
 
+	public void addToOrder(String itemName, double price) {
+	    order.put(itemName, order.getOrDefault(itemName, 0.0) + price);
+	    total += price;
+	    updateDisplay();
+	}
+
+
+	private void updateDisplay() {
+	    textAreaOrder.setText("Order:\n");
+	    for (String item : order.keySet()) {
+	        double itemTotal = order.get(item);
+	        int quantity = (int)(itemTotal / menu.get(item));
+	        textAreaOrder.append(item + " x" + quantity + " - ₱" + String.format("%.2f", itemTotal) + "\n");
+	    }
+	    textAreaOrder.append("\nTotal: ₱" + String.format("%.2f", total));
+	    lblTotal.setText("Total: ₱" + String.format("%.2f", total));
+	}
+
+
+	public double getTotal() { return total; }
+	public LinkedHashMap<String, Double> getOrder() { return order; }
+	
 	public void setVisible(boolean b) {
 		
 		frame.setVisible(b);

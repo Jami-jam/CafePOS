@@ -1,6 +1,7 @@
 package cafepos.src;
 
 import java.awt.EventQueue;
+import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 
@@ -43,6 +44,11 @@ public class Receipt {
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		frame.setVisible(b);
+	}
+
+	public void setOrderData(double total, LinkedHashMap<String, Double> order) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
