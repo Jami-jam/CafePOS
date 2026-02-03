@@ -5,6 +5,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedHashMap;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -69,6 +70,8 @@ public class Menu {
     private LinkedHashMap<String, Double> menu = new LinkedHashMap<>();
     private JTextArea textAreaOrder = new JTextArea(8, 20);
     private JScrollPane scrollPane = new JScrollPane();
+    private LinkedHashMap<String, JButton> minusButtons = new LinkedHashMap<>();
+    private LinkedHashMap<String, JButton> removeButtons = new LinkedHashMap<>();
 		
 
 	public static void main(String[] args) {	
@@ -119,9 +122,107 @@ public class Menu {
 		
 		JPanel panelCold = new JPanel();
 		panelCold.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelCold.setBounds(197, 43, 530, 719);
+		panelCold.setBounds(197, 43, 545, 719);
 		frame.getContentPane().add(panelCold);
 		panelCold.setLayout(null);
+		
+		// SPANISH LATTE
+		
+		JButton btnSpanishLatte = new JButton("Spanish Latte");
+		btnSpanishLatte.setBounds(275, 63, 200, 232); 
+		panelCold.add(btnSpanishLatte);
+		btnSpanishLatte.addActionListener(e -> addToOrder("Spanish Latte", menu.get("Spanish Latte")));
+		
+		JButton btnSpanishLatteMinus = new JButton("-"); 
+		btnSpanishLatteMinus.setBounds(483, 150, 29, 34); 
+		btnSpanishLatteMinus.setFont(new Font("Arial", Font.BOLD, 7));
+		panelCold.add(btnSpanishLatteMinus);
+		btnSpanishLatteMinus.addActionListener(e -> removeFromOrder("Spanish Latte")); 
+		minusButtons.put("Spanish Latte", btnSpanishLatteMinus);
+		
+		JButton btnSpanishLRemove = new JButton("✕");
+		btnSpanishLRemove.setBounds(503, 120, 25, 25);
+		btnSpanishLRemove.setFont(new Font("Arial", Font.BOLD, 14));
+		btnSpanishLRemove.setForeground(Color.RED);
+		btnSpanishLRemove.setBackground(Color.WHITE);
+		btnSpanishLRemove.setEnabled(false); 
+		panelCold.add(btnSpanishLRemove);
+		btnSpanishLRemove.addActionListener(e -> removeItemCompletely("Spanish Latte"));
+		removeButtons.put("Spanish Latte", btnSpanishLRemove);
+		
+		// AMERICANO
+		
+		JButton btnAmericano = new JButton("Americano");
+		btnAmericano.setBounds(20, 63, 200, 232);  
+		panelCold.add(btnAmericano);
+		btnAmericano.addActionListener(e -> addToOrder("Americano", menu.get("Americano")));
+		
+		JButton btnAmericanoMinus = new JButton("-"); 
+		btnAmericanoMinus.setBounds(225, 150, 29, 34); 
+		btnAmericanoMinus.setFont(new Font("Arial", Font.BOLD, 7));
+		panelCold.add(btnAmericanoMinus);
+		btnAmericanoMinus.addActionListener(e -> removeFromOrder("Americano"));
+		minusButtons.put("Americano", btnAmericanoMinus);
+		
+		JButton btnAmericanoRemove = new JButton("✕");
+		btnAmericanoRemove.setBounds(245, 120, 25, 25);
+		btnAmericanoRemove.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAmericanoRemove.setForeground(Color.RED);
+		btnAmericanoRemove.setBackground(Color.WHITE);
+		btnAmericanoRemove.setEnabled(false); 
+		panelCold.add(btnAmericanoRemove);
+		btnAmericanoRemove.addActionListener(e -> removeItemCompletely("Americano"));
+		removeButtons.put("Americano", btnAmericanoRemove);
+		
+		// WHITE MOCHA
+		
+		JButton btnWhiteMocha = new JButton("White Mocha");
+		btnWhiteMocha.setBounds(20, 398, 200, 232);
+		panelCold.add(btnWhiteMocha);
+		btnWhiteMocha.addActionListener(e -> addToOrder("White Mocha", menu.get("White Mocha")));
+		
+		JButton btnWhiteMMInus = new JButton("-"); 
+		btnWhiteMMInus.setBounds(225, 480, 29, 34); 
+		btnWhiteMMInus.setFont(new Font("Arial", Font.BOLD, 7));
+		panelCold.add(btnWhiteMMInus);
+		btnWhiteMMInus.addActionListener(e -> removeFromOrder("White Mocha"));
+		minusButtons.put("White Mocha", btnWhiteMMInus);
+		
+		JButton btnWhiteMRemove = new JButton("✕");
+		btnWhiteMRemove.setBounds(245, 450, 25, 25);
+		btnWhiteMRemove.setFont(new Font("Arial", Font.BOLD, 14));
+		btnWhiteMRemove.setForeground(Color.RED);
+		btnWhiteMRemove.setBackground(Color.WHITE);
+		btnWhiteMRemove.setEnabled(false); 
+		panelCold.add(btnWhiteMRemove);
+		btnWhiteMRemove.addActionListener(e -> removeItemCompletely("White Mocha"));
+		removeButtons.put("White Mocha", btnWhiteMRemove);
+		
+		// CARAMEL MACCHIATO COLD
+		
+		JButton btnCaramelMC = new JButton("Caramel Macchiato");
+		btnCaramelMC.setBounds(275, 398, 200, 232);
+		panelCold.add(btnCaramelMC);
+		btnCaramelMC.addActionListener(e -> addToOrder("Caramel Macchiato Cold", menu.get("Caramel Macchiato Cold")));
+		
+		JButton btnCaramelMCMINUS = new JButton("-"); 
+		btnCaramelMCMINUS.setBounds(483, 480, 29, 34); 
+		btnCaramelMCMINUS.setFont(new Font("Arial", Font.BOLD, 7));
+		panelCold.add(btnCaramelMCMINUS);
+		btnCaramelMCMINUS.addActionListener(e -> removeFromOrder("Caramel Macchiato Cold"));
+		minusButtons.put("Caramel Macchiato Cold", btnCaramelMCMINUS);
+		
+		JButton btnCaramelMCRemove = new JButton("✕");
+		btnCaramelMCRemove.setBounds(503, 450, 25, 25);
+		btnCaramelMCRemove.setFont(new Font("Arial", Font.BOLD, 14));
+		btnCaramelMCRemove.setForeground(Color.RED);
+		btnCaramelMCRemove.setBackground(Color.WHITE);
+		btnCaramelMCRemove.setEnabled(false); 
+		panelCold.add(btnCaramelMCRemove);
+		btnCaramelMCRemove.addActionListener(e -> removeItemCompletely("Caramel Macchiato Cold"));
+		removeButtons.put("Caramel Macchiato Cold", btnCaramelMCRemove);
+		
+		//
 		
 		JLabel lblWhiteMocha = new JLabel("₱ 155");
 		lblWhiteMocha.setHorizontalAlignment(SwingConstants.CENTER);
@@ -133,27 +234,11 @@ public class Menu {
 		lblCaramelMC.setBounds(285, 638, 212, 34);
 		panelCold.add(lblCaramelMC);
 		
-		JButton btnCaramelMC = new JButton("Caramel Macchiato");
-		btnCaramelMC.setBounds(275, 398, 234, 232);
-		panelCold.add(btnCaramelMC);
-		btnCaramelMC.addActionListener(e -> addToOrder("Americano", menu.get("Caramel Macchiato Cold")));
-		
-		JButton btnWhiteMocha = new JButton("White Mocha");
-		btnWhiteMocha.setBounds(20, 398, 234, 232);
-		panelCold.add(btnWhiteMocha);
 		
 		JLabel lblAmericano = new JLabel("₱ 120");
 		lblAmericano.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmericano.setBounds(30, 306, 212, 34);
 		panelCold.add(lblAmericano);
-		
-		JButton btnAmericano = new JButton("Americano");
-		btnAmericano.setBounds(20, 63, 234, 232);
-		panelCold.add(btnAmericano);
-		
-		JButton btnSpanishLatte = new JButton("Spanish Latte");
-		btnSpanishLatte.setBounds(275, 63, 234, 232);
-		panelCold.add(btnSpanishLatte);
 		
 		JLabel lblSpanishLatte = new JLabel("₱ 160");
 		lblSpanishLatte.setHorizontalAlignment(SwingConstants.CENTER);
@@ -163,7 +248,7 @@ public class Menu {
 		
 		JPanel panelHot = new JPanel();
 		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelHot.setBounds(197, 43, 530, 719);
+		panelHot.setBounds(197, 43, 545, 719);
 		frame.getContentPane().add(panelHot);
 		panelHot.setLayout(null);
 		panelHot.setVisible(false);
@@ -224,7 +309,7 @@ public class Menu {
 		
 		JPanel panelPastries = new JPanel();
 		panelPastries.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelPastries.setBounds(197, 43, 530, 719);
+		panelPastries.setBounds(197, 43, 545, 719);
 		frame.getContentPane().add(panelPastries);
 		panelPastries.setLayout(null);
 		
@@ -267,7 +352,7 @@ public class Menu {
 		
 		JPanel panelNon = new JPanel();
 		panelNon.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelNon.setBounds(197, 43, 530, 719);
+		panelNon.setBounds(197, 43, 545, 719);
 		frame.getContentPane().add(panelNon);
 		panelNon.setLayout(null);
 		
@@ -320,7 +405,7 @@ public class Menu {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBounds(197, 43, 530, 719);
+		panel_1.setBounds(197, 43, 545, 719);
 		frame.getContentPane().add(panel_1);
 		btnCold.setBounds(37, 120, 140, 139);
 		frame.getContentPane().add(btnCold);
@@ -384,6 +469,32 @@ public class Menu {
 		frame.getContentPane().add(lblMenu);
 	}
 
+	public void removeFromOrder(String itemName) {
+	    if (order.containsKey(itemName)) {
+	        double price = menu.get(itemName);
+	        order.put(itemName, order.get(itemName) - price);
+	        total -= price;
+	        if (order.get(itemName) <= 0) {
+	            order.remove(itemName);
+	        }
+	        updateDisplay();
+	    }
+	}
+	
+	public void removeItemCompletely(String itemName) {
+	    if (order.containsKey(itemName)) {
+	        double totalPrice = order.get(itemName);
+	        total -= totalPrice;  // Subtract entire amount
+	        order.remove(itemName);  // Remove completely
+	        updateDisplay();
+	        // Disable minus button for removed item
+	        if (minusButtons.containsKey(itemName)) {
+	            minusButtons.get(itemName).setEnabled(false);
+	        }
+	    }
+	}
+	
+	
 	public void addToOrder(String itemName, double price) {
 	    order.put(itemName, order.getOrDefault(itemName, 0.0) + price);
 	    total += price;
@@ -397,6 +508,18 @@ public class Menu {
 	        double itemTotal = order.get(item);
 	        int quantity = (int)(itemTotal / menu.get(item));
 	        textAreaOrder.append(item + " x" + quantity + " - ₱" + String.format("%.2f", itemTotal) + "\n");
+	        
+	        // Enable/disable MINUS button
+	        if (quantity <= 1) {
+	            minusButtons.get(item).setEnabled(false);
+	        } else {
+	            minusButtons.get(item).setEnabled(true);
+	        }
+	        
+	        // Enable/disable REMOVE button (always enabled when item exists)
+	        if (removeButtons.containsKey(item)) {
+	            removeButtons.get(item).setEnabled(true);
+	        }
 	    }
 	    textAreaOrder.append("\nTotal: ₱" + String.format("%.2f", total));
 	    lblTotal.setText("Total: ₱" + String.format("%.2f", total));

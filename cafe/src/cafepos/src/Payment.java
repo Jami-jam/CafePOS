@@ -48,7 +48,7 @@ public class Payment {
         textAreaOrder = new JTextArea(8, 20);
         scrollPane = new JScrollPane(textAreaOrder);
         initialize(total, order);
-        Receipt receipt = new Receipt();  // Remove parameters
+        Receipt receipt = new Receipt();
     }
 
     private void initialize() {
@@ -96,7 +96,7 @@ public class Payment {
 
         JButton btnContinue = new JButton("Continue");
         btnContinue.addActionListener(e -> {
-            Receipt receipt = new Receipt();  // Fixed: no parameters
+            Receipt receipt = new Receipt();
             receipt.setVisible(true);
             frame.dispose();
         });
