@@ -22,6 +22,8 @@ public class Payment {
     private JTextArea textAreaOrder;
     private JScrollPane scrollPane;
     private JLabel lblTotalAmount;
+	private double total;
+	private LinkedHashMap<String, Double> order;
 
 
     public static void main(String[] args) {
@@ -45,10 +47,11 @@ public class Payment {
     }
 
     public Payment(double total, LinkedHashMap<String, Double> order) {
+        this.total = total; 
+        this.order = order;
         textAreaOrder = new JTextArea(8, 20);
         scrollPane = new JScrollPane(textAreaOrder);
-        initialize(total, order);
-        Receipt receipt = new Receipt();
+        initialize(total, order);  // PASS DATA
     }
 
     private void initialize() {
@@ -96,7 +99,7 @@ public class Payment {
 
         JButton btnContinue = new JButton("Continue");
         btnContinue.addActionListener(e -> {
-            Receipt receipt = new Receipt();
+            Receipt receipt = new Receipt(total, order);  // ← PASS total & order
             receipt.setVisible(true);
             frame.dispose();
         });
