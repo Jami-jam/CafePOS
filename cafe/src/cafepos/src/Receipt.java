@@ -110,7 +110,7 @@ public class Receipt {
         updateReceiptDisplay(order, total);
 
         // BUTTONS
-        JButton btnPrintReceipt = new JButton("🖨️ PRINT RECEIPT");
+        JButton btnPrintReceipt = new JButton("PRINT RECEIPT");
         btnPrintReceipt.setFont(new Font("Arial", Font.BOLD, 16));
         btnPrintReceipt.setBounds(50, 588, 220, 60);
         btnPrintReceipt.addActionListener(e -> printReceipt());
