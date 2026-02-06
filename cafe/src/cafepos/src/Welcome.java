@@ -29,6 +29,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Component; 
 import javax.swing.SwingUtilities;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 public class Welcome {
 
 	private JFrame frame;
@@ -62,17 +64,13 @@ public class Welcome {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(0, 0, 600, 800);
+		frame.setBounds(0, 0, 768, 1024);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-	
 		
-		JLabel lblNewLabel = new JLabel("Welcome");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(157, 145, 352, 169);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Start");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(SystemColor.menu);
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Digital Arts Tech-12\\Downloads\\START.png"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    Menu mainApp = new Menu();
@@ -81,7 +79,14 @@ public class Welcome {
 			}
 			
 		});
-		btnNewButton.setBounds(220, 609, 166, 50);
+		btnNewButton.setBounds(256, 788, 241, 160);
 		frame.getContentPane().add(btnNewButton);
+	
+		
+		JLabel lblNewLabel = new JLabel("Welcome");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Digital Arts Tech-12\\Downloads\\welcome page (1).png"));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 765, 985);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }

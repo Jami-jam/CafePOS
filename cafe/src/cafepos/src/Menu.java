@@ -63,6 +63,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 public class Menu {
 
 	private JFrame frame;
@@ -124,7 +125,51 @@ public class Menu {
 	
 		frame.getContentPane().setLayout(null);
 		
+		JLabel lblMenu = new JLabel("");
+		lblMenu.setIcon(new ImageIcon("C:\\Users\\Digital Arts Tech-12\\Downloads\\menu.png"));
+		lblMenu.setBounds(20, 11, 167, 98);
+		frame.getContentPane().add(lblMenu);
+		lblMenu.setFont(new Font("Malgun Gothic Semilight", Font.BOLD, 30));
+		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JPanel universalPanel = new JPanel();
+		universalPanel.setBounds(370, 777, 150, 45);
+		universalPanel.setOpaque(false);
+		universalPanel.setLayout(new GridLayout(1,3));
+		frame.getContentPane().add(universalPanel);
+		
+				JButton btnPlus = new JButton("+");
+				btnPlus.setBackground(Color.GREEN);
+				btnPlus.setForeground(Color.WHITE);
+				btnPlus.addActionListener(e -> {
+				    if (!lastClickedItem.isEmpty() && menu.containsKey(lastClickedItem)) {
+				        addToOrder(lastClickedItem, menu.get(lastClickedItem));
+				    }
+				});
+				universalPanel.add(btnPlus);
+				
+						JButton btnMinus = new JButton("-");
+						btnMinus.setBackground(Color.ORANGE);
+						btnMinus.setForeground(Color.WHITE);
+						btnMinus.addActionListener(e -> {
+						    if (!lastClickedItem.isEmpty()) {
+						        removeFromOrder(lastClickedItem);
+						    }
+						});
+						universalPanel.add(btnMinus);
+						
+								JButton btnRemove = new JButton("X");
+								btnRemove.setBackground(Color.RED);
+								btnRemove.setForeground(Color.WHITE);
+								btnRemove.addActionListener(e -> {
+								    if (!lastClickedItem.isEmpty()) {
+								        removeItemCompletely(lastClickedItem);
+								    }
+								});
+								universalPanel.add(btnRemove);
+		
 		JPanel panelPastries = new JPanel();
+		panelPastries.setBackground(new Color(162, 114, 94));
 		panelPastries.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelPastries.setBounds(197, 43, 530, 719);
 		frame.getContentPane().add(panelPastries);
@@ -178,63 +223,32 @@ public class Menu {
 		///////////////////////////////
 		
 		JLabel lblCroissant = new JLabel("₱ 60");
+		lblCroissant.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblCroissant.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCroissant.setBounds(30, 306, 212, 34);
 		panelPastries.add(lblCroissant);
 		
 		JLabel lblEggTart = new JLabel("₱ 70");
+		lblEggTart.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblEggTart.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEggTart.setBounds(285, 306, 212, 34);
 		panelPastries.add(lblEggTart);
 		
 		JLabel lblRedVelvetC = new JLabel("₱ 170");
 		lblRedVelvetC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRedVelvetC.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblRedVelvetC.setBounds(30, 638, 212, 34);
 		panelPastries.add(lblRedVelvetC);
 		
 		JLabel lblChocoC = new JLabel("₱ 80");
+		lblChocoC.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblChocoC.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChocoC.setBounds(285, 638, 212, 34);
 		panelPastries.add(lblChocoC);
 		panelPastries.setVisible(false);
 		
-		JPanel universalPanel = new JPanel();
-		universalPanel.setBounds(370, 777, 150, 45);
-		universalPanel.setOpaque(false);
-		universalPanel.setLayout(new GridLayout(1,3));
-		frame.getContentPane().add(universalPanel);
-
-		JButton btnPlus = new JButton("+");
-		btnPlus.setBackground(Color.GREEN);
-		btnPlus.setForeground(Color.WHITE);
-		btnPlus.addActionListener(e -> {
-		    if (!lastClickedItem.isEmpty() && menu.containsKey(lastClickedItem)) {
-		        addToOrder(lastClickedItem, menu.get(lastClickedItem));
-		    }
-		});
-		universalPanel.add(btnPlus);
-
-		JButton btnMinus = new JButton("-");
-		btnMinus.setBackground(Color.ORANGE);
-		btnMinus.setForeground(Color.WHITE);
-		btnMinus.addActionListener(e -> {
-		    if (!lastClickedItem.isEmpty()) {
-		        removeFromOrder(lastClickedItem);
-		    }
-		});
-		universalPanel.add(btnMinus);
-
-		JButton btnRemove = new JButton("X");
-		btnRemove.setBackground(Color.RED);
-		btnRemove.setForeground(Color.WHITE);
-		btnRemove.addActionListener(e -> {
-		    if (!lastClickedItem.isEmpty()) {
-		        removeItemCompletely(lastClickedItem);
-		    }
-		});
-		universalPanel.add(btnRemove);
-		
 		JPanel panelNon = new JPanel();
+		panelNon.setBackground(new Color(162, 114, 94));
 		panelNon.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelNon.setBounds(197, 43, 530, 719);
 		frame.getContentPane().add(panelNon);
@@ -384,6 +398,7 @@ public class Menu {
 		panelNon.setVisible(false);
 		
 		JPanel panelHot = new JPanel();
+		panelHot.setBackground(new Color(162, 114, 94));
 		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelHot.setBounds(197, 43, 530, 719);
 		frame.getContentPane().add(panelHot);
@@ -594,6 +609,7 @@ public class Menu {
 		 */
 		
 		JPanel panelCold = new JPanel();
+		panelCold.setBackground(new Color(162, 114, 94));
 		panelCold.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelCold.setBounds(197, 43, 530, 719);
 		frame.getContentPane().add(panelCold);
@@ -753,6 +769,8 @@ public class Menu {
 		textAreaOrder.setEditable(false);
 		
 		JButton btnCold = new JButton("Cold");
+		btnCold.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnCold.setBackground(new Color(240, 240, 240));
 		btnCold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelCold.setVisible(true);
@@ -761,8 +779,10 @@ public class Menu {
 				panelPastries.setVisible(false);
 			}
 		});
+		btnCold.setBackground(new Color(162, 114, 94));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(162, 114, 94));
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_1.setBounds(197, 43, 530, 719);
 		frame.getContentPane().add(panel_1);
@@ -771,6 +791,7 @@ public class Menu {
 		
 		
 		JButton btnHot = new JButton("Hot");
+		btnHot.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnHot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelHot.setVisible(true);
@@ -780,10 +801,12 @@ public class Menu {
 				panel_1.setVisible(false);
 			}
 		});
+		btnHot.setBackground(new Color(162, 114, 94));
 		btnHot.setBounds(37, 287, 140, 139);
 		frame.getContentPane().add(btnHot);
 		
 		JButton btnPastries = new JButton("Pastries");
+		btnPastries.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnPastries.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelPastries.setVisible(true);
@@ -795,8 +818,10 @@ public class Menu {
 		});
 		btnPastries.setBounds(37, 623, 140, 139);
 		frame.getContentPane().add(btnPastries);
+		btnPastries.setBackground(new Color(162, 114, 94));
 		
 		JButton btnNonCof = new JButton("Non-Coffee");
+		btnNonCof.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNonCof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelNon.setVisible(true);
@@ -806,10 +831,13 @@ public class Menu {
 				panel_1.setVisible(false);
 			}
 		});
+		btnNonCof.setBackground(new Color(162,114,94));
 		btnNonCof.setBounds(37, 456, 140, 139);
 		frame.getContentPane().add(btnNonCof);
 		
 		JButton btnCont = new JButton("Continue");
+		btnCont.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnCont.setBackground(new Color(162, 114, 94));
 		btnCont.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {{
 				    Payment payment = new Payment(total, order);
@@ -821,11 +849,10 @@ public class Menu {
 		btnCont.setBounds(537, 822, 190, 91);
 		frame.getContentPane().add(btnCont);
 		
-		JLabel lblMenu = new JLabel("Menu");
-		lblMenu.setFont(new Font("Malgun Gothic Semilight", Font.BOLD, 30));
-		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenu.setBounds(10, 11, 167, 98);
-		frame.getContentPane().add(lblMenu);
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Digital Arts Tech-12\\Downloads\\menu bg.png"));
+		lblNewLabel.setBounds(0, 0, 752, 985);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 	public void removeFromOrder(String itemName) {
