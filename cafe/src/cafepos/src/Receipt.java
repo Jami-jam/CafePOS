@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.print.PrinterJob;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -132,7 +133,13 @@ public class Receipt {
 		frame.getContentPane().add(btnBack);
 		
 		JLabel lblbg = new JLabel("New label");
-		lblbg.setIcon(new ImageIcon("C:\\Users\\Jacob\\Downloads\\cafe\\icons\\menu bg.png"));
+	    URL lblbgurl = getClass().getResource("/resources/icons/menu bg.png");
+	    if (lblbg != null) {
+	    	lblbg.setIcon(new ImageIcon(lblbgurl));
+	    
+		lblbg.setBounds(0, 0, 752, 985);
+		frame.getContentPane().add(lblbg);
+	    }
 		lblbg.setBounds(0, 0, 752, 985);
 		frame.getContentPane().add(lblbg);
 	}

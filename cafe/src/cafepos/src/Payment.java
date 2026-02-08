@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -50,7 +51,7 @@ public class Payment {
 		this.order = order;
 		textAreaOrder = new JTextArea(8, 20);
 		scrollPane = new JScrollPane(textAreaOrder);
-		initialize(total, order); // PASS DATA
+		initialize(total, order);
 	}
 
 	private void initialize() {
@@ -98,7 +99,7 @@ public class Payment {
 
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(e -> {
-			Receipt receipt = new Receipt(total, order); // ← PASS total & order
+			Receipt receipt = new Receipt(total, order);
 			receipt.setVisible(true);
 			frame.dispose();
 		});
@@ -106,9 +107,13 @@ public class Payment {
 		frame.getContentPane().add(btnContinue);
 		
 		JLabel lblbg = new JLabel("New label");
-		lblbg.setIcon(new ImageIcon("C:\\Users\\Jacob\\Downloads\\cafe\\icons\\menu bg.png"));
+	    URL lblbgurl = getClass().getResource("/resources/icons/menu bg.png");
+	    if (lblbg != null) {
+	    	lblbg.setIcon(new ImageIcon(lblbgurl));
+	    
 		lblbg.setBounds(0, 0, 752, 985);
 		frame.getContentPane().add(lblbg);
+	    }
 	}
 
 	private void updateOrderDisplay(LinkedHashMap<String, Double> order, double total) {

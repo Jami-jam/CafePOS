@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -127,7 +128,10 @@ public class Menu {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblMenu = new JLabel("");
-		lblMenu.setIcon(new ImageIcon("C:\\Users\\Jacob\\Downloads\\cafe\\icons\\menu.png"));
+	    URL menuUrl = getClass().getResource("/resources/icons/menu.png");
+	    if (menuUrl != null) {
+	    	lblMenu.setIcon(new ImageIcon(menuUrl));
+	    }
 		lblMenu.setBounds(20, 11, 167, 98);
 		frame.getContentPane().add(lblMenu);
 		lblMenu.setFont(new Font("Malgun Gothic Semilight", Font.BOLD, 30));
@@ -273,24 +277,7 @@ public class Menu {
 			lastClickedItem = "Matcha Strawberry";
 			addToOrder("Matcha Strawberry", menu.get("Matcha Strawberry"));
 		});
-
-		/*
-		 * JButton btnMatchaSMInus = new JButton("-"); btnMatchaSMInus.setBounds(225,
-		 * 480, 29, 34); btnMatchaSMInus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelNon.add(btnMatchaSMInus); btnMatchaSMInus.addActionListener(e ->
-		 * removeFromOrder("Matcha Strawberry")); minusButtons.put("Matcha Strawberry",
-		 * btnMatchaSMInus);
-		 * 
-		 * JButton btnMatchaSRemove = new JButton("✕"); btnMatchaSRemove.setBounds(245,
-		 * 450, 25, 25); btnMatchaSRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnMatchaSRemove.setForeground(Color.RED);
-		 * btnMatchaSRemove.setBackground(Color.WHITE);
-		 * btnMatchaSRemove.setEnabled(false); panelNon.add(btnMatchaSRemove);
-		 * btnMatchaSRemove.addActionListener(e ->
-		 * removeItemCompletely("Matcha Strawberry"));
-		 * removeButtons.put("Matcha Strawberry", btnMatchaSRemove);
-		 */
-
+		
 		// STRAWBERRY FRAPPE
 
 		JButton btnStrawberryF = new JButton("Strawberry Frappe");
@@ -300,25 +287,6 @@ public class Menu {
 			lastClickedItem = "Strawberry Frappe";
 			addToOrder("Strawberry Frappe", menu.get("Strawberry Frappe"));
 		});
-
-		/*
-		 * JButton btnStrawberryFMINUS = new JButton("-");
-		 * btnStrawberryFMINUS.setBounds(483, 480, 29, 34);
-		 * btnStrawberryFMINUS.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelNon.add(btnStrawberryFMINUS); btnStrawberryFMINUS.addActionListener(e ->
-		 * removeFromOrder("Strawberry Frappe")); minusButtons.put("Strawberry Frappe",
-		 * btnStrawberryFMINUS);
-		 * 
-		 * JButton btnStrawberrtFRemove = new JButton("✕");
-		 * btnStrawberrtFRemove.setBounds(503, 450, 25, 25);
-		 * btnStrawberrtFRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnStrawberrtFRemove.setForeground(Color.RED);
-		 * btnStrawberrtFRemove.setBackground(Color.WHITE);
-		 * btnStrawberrtFRemove.setEnabled(false); panelNon.add(btnStrawberrtFRemove);
-		 * btnStrawberrtFRemove.addActionListener(e ->
-		 * removeItemCompletely("Strawberry Frappe"));
-		 * removeButtons.put("Strawberry Frappe", btnStrawberrtFRemove);
-		 */
 
 		// MATCHA LATTE
 
@@ -330,23 +298,6 @@ public class Menu {
 			addToOrder("Matcha Latte", menu.get("Matcha Latte"));
 		});
 
-		/*
-		 * JButton btnMatchaLMinus = new JButton("-"); btnMatchaLMinus.setBounds(483,
-		 * 150, 29, 34); btnMatchaLMinus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelNon.add(btnMatchaLMinus); btnMatchaLMinus.addActionListener(e ->
-		 * removeFromOrder("Matcha Latte")); minusButtons.put("Matcha Latte",
-		 * btnMatchaLMinus);
-		 * 
-		 * JButton btnMatchaLRemove = new JButton("✕"); btnMatchaLRemove.setBounds(503,
-		 * 120, 25, 25); btnMatchaLRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnMatchaLRemove.setForeground(Color.RED);
-		 * btnMatchaLRemove.setBackground(Color.WHITE);
-		 * btnMatchaLRemove.setEnabled(false); panelNon.add(btnMatchaLRemove);
-		 * btnMatchaLRemove.addActionListener(e ->
-		 * removeItemCompletely("Matcha Latte")); removeButtons.put("Matcha Latte",
-		 * btnMatchaLRemove);
-		 */
-
 		// CLASSIC CHOCOLATE
 
 		JButton btnClassicC = new JButton("Classic Chocolate");
@@ -356,23 +307,6 @@ public class Menu {
 			lastClickedItem = "Classic Chocolate";
 			addToOrder("Classic Chocolate", menu.get("Classic Chocolate"));
 		});
-
-		/*
-		 * JButton btnClassicCMinus = new JButton("-"); btnClassicCMinus.setBounds(225,
-		 * 150, 29, 34); btnClassicCMinus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelNon.add(btnClassicCMinus); btnClassicCMinus.addActionListener(e ->
-		 * removeFromOrder("Classic Chocolate")); minusButtons.put("Classic Chocolate",
-		 * btnClassicCMinus);
-		 * 
-		 * JButton btnClassicCRemove = new JButton("✕");
-		 * btnClassicCRemove.setBounds(245, 120, 25, 25); btnClassicCRemove.setFont(new
-		 * Font("Arial", Font.BOLD, 14)); btnClassicCRemove.setForeground(Color.RED);
-		 * btnClassicCRemove.setBackground(Color.WHITE);
-		 * btnClassicCRemove.setEnabled(false); panelNon.add(btnClassicCRemove);
-		 * btnClassicCRemove.addActionListener(e ->
-		 * removeItemCompletely("Classic Chocolate"));
-		 * removeButtons.put("Classic Chocolate", btnClassicCRemove);
-		 */
 
 		///////////////////////////////
 
@@ -422,21 +356,6 @@ public class Menu {
 			addToOrder("Brewed", menu.get("Brewed"));
 		});
 
-		/*
-		 * JButton btnBrewedMinus = new JButton("-"); btnBrewedMinus.setBounds(225, 150,
-		 * 29, 34); btnBrewedMinus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelHot.add(btnBrewedMinus); btnBrewedMinus.addActionListener(e ->
-		 * removeFromOrder("Brewed")); minusButtons.put("Brewed", btnBrewedMinus);
-		 * 
-		 * JButton btnBrewedRemove = new JButton("✕"); btnBrewedRemove.setBounds(245,
-		 * 120, 25, 25); btnBrewedRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnBrewedRemove.setForeground(Color.RED);
-		 * btnBrewedRemove.setBackground(Color.WHITE);
-		 * btnBrewedRemove.setEnabled(false); panelHot.add(btnBrewedRemove);
-		 * btnBrewedRemove.addActionListener(e -> removeItemCompletely("Brewed"));
-		 * removeButtons.put("Brewed", btnBrewedRemove);
-		 */
-
 		// CAFE LATTE
 
 		JButton btnCafeLatte = new JButton("Cafe Latte");
@@ -446,24 +365,6 @@ public class Menu {
 			lastClickedItem = "Cafe Latte";
 			addToOrder("Cafe Latte", menu.get("Cafe Latte"));
 		});
-
-		/*
-		 * JButton btnCafeLatteMinus = new JButton("-");
-		 * btnCafeLatteMinus.setBounds(483, 150, 29, 34); btnCafeLatteMinus.setFont(new
-		 * Font("Arial", Font.BOLD, 7)); panelHot.add(btnCafeLatteMinus);
-		 * btnCafeLatteMinus.addActionListener(e -> removeFromOrder("Cafe Latte"));
-		 * minusButtons.put("Cafe Latte", btnCafeLatteMinus);
-		 * 
-		 * JButton btnCafeLatteRemove = new JButton("✕");
-		 * btnCafeLatteRemove.setBounds(503, 120, 25, 25);
-		 * btnCafeLatteRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnCafeLatteRemove.setForeground(Color.RED);
-		 * btnCafeLatteRemove.setBackground(Color.WHITE);
-		 * btnCafeLatteRemove.setEnabled(false); panelHot.add(btnCafeLatteRemove);
-		 * btnCafeLatteRemove.addActionListener(e ->
-		 * removeItemCompletely("Cafe Latte")); removeButtons.put("Cafe Latte",
-		 * btnCafeLatteRemove);
-		 */
 
 		// ESPRESSO
 
@@ -475,21 +376,6 @@ public class Menu {
 			addToOrder("Espresso", menu.get("Espresso"));
 		});
 
-		/*
-		 * JButton btnEspressoMInus = new JButton("-"); btnEspressoMInus.setBounds(225,
-		 * 480, 29, 34); btnEspressoMInus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelHot.add(btnEspressoMInus); btnEspressoMInus.addActionListener(e ->
-		 * removeFromOrder("Espresso")); minusButtons.put("Espresso", btnEspressoMInus);
-		 * 
-		 * JButton btnEspressoRemove = new JButton("✕");
-		 * btnEspressoRemove.setBounds(245, 450, 25, 25); btnEspressoRemove.setFont(new
-		 * Font("Arial", Font.BOLD, 14)); btnEspressoRemove.setForeground(Color.RED);
-		 * btnEspressoRemove.setBackground(Color.WHITE);
-		 * btnEspressoRemove.setEnabled(false); panelHot.add(btnEspressoRemove);
-		 * btnEspressoRemove.addActionListener(e -> removeItemCompletely("Espresso"));
-		 * removeButtons.put("Espresso", btnEspressoRemove);
-		 */
-
 		// CARAMEL MACCHIATO HOT
 
 		JButton btnCaramelMH = new JButton("Caramel Macchiato Hot");
@@ -500,100 +386,12 @@ public class Menu {
 			addToOrder("Caramel Macchiato Hot", menu.get("Caramel Macchiato Hot"));
 		});
 
-		/*
-		 * JButton btnCaramelMHMINUS = new JButton("-");
-		 * btnCaramelMHMINUS.setBounds(483, 480, 29, 34); btnCaramelMHMINUS.setFont(new
-		 * Font("Arial", Font.BOLD, 7)); panelHot.add(btnCaramelMHMINUS);
-		 * btnCaramelMHMINUS.addActionListener(e ->
-		 * removeFromOrder("Caramel Macchiato Hot"));
-		 * minusButtons.put("Caramel Macchiato Hot", btnCaramelMHMINUS);
-		 * 
-		 * JButton btnCaramelMHRemove = new JButton("✕");
-		 * btnCaramelMHRemove.setBounds(503, 450, 25, 25);
-		 * btnCaramelMHRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnCaramelMHRemove.setForeground(Color.RED);
-		 * btnCaramelMHRemove.setBackground(Color.WHITE);
-		 * btnCaramelMHRemove.setEnabled(false); panelHot.add(btnCaramelMHRemove);
-		 * btnCaramelMHRemove.addActionListener(e ->
-		 * removeItemCompletely("Caramel Macchiato Hot"));
-		 * removeButtons.put("Caramel Macchiato Hot", btnCaramelMHRemove);
-		 */
-
 		///////////////////////////////
 
 		JLabel lblBrewed = new JLabel("₱ 110");
 		lblBrewed.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBrewed.setBounds(30, 306, 212, 34);
 		panelHot.add(lblBrewed);
-
-		/*
-		 * JButton btnCroissantMINUS = new JButton("-");
-		 * btnCroissantMINUS.setBounds(225, 150, 29, 34); btnCroissantMINUS.setFont(new
-		 * Font("Arial", Font.BOLD, 7)); panelPastries.add(btnCroissantMINUS);
-		 * btnCroissantMINUS.addActionListener(e -> removeFromOrder("Croissant"));
-		 * minusButtons.put("Croissant", btnCroissantMINUS);
-		 * 
-		 * JButton btnCroissantRemove = new JButton("✕");
-		 * btnCroissantRemove.setBounds(245, 120, 25, 25);
-		 * btnCroissantRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnCroissantRemove.setForeground(Color.RED);
-		 * btnCroissantRemove.setBackground(Color.WHITE);
-		 * btnCroissantRemove.setEnabled(false); panelPastries.add(btnCroissantRemove);
-		 * btnCroissantRemove.addActionListener(e -> removeItemCompletely("Croissant"));
-		 * removeButtons.put("Croissant", btnCroissantRemove);
-		 */
-
-		/*
-		 * JButton btnEggTartMinus = new JButton("-"); btnEggTartMinus.setBounds(483,
-		 * 150, 29, 34); btnEggTartMinus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelPastries.add(btnEggTartMinus); btnEggTartMinus.addActionListener(e ->
-		 * removeFromOrder("Egg Tart")); minusButtons.put("Egg Tart", btnEggTartMinus);
-		 * 
-		 * JButton btnEggTartRemove = new JButton("✕"); btnEggTartRemove.setBounds(503,
-		 * 120, 25, 25); btnEggTartRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnEggTartRemove.setForeground(Color.RED);
-		 * btnEggTartRemove.setBackground(Color.WHITE);
-		 * btnEggTartRemove.setEnabled(false); panelPastries.add(btnEggTartRemove);
-		 * btnEggTartRemove.addActionListener(e -> removeItemCompletely("Egg Tart"));
-		 * removeButtons.put("Egg Tart", btnEggTartRemove);
-		 */
-
-		/*
-		 * JButton btnChocoCMINUS = new JButton("-"); btnChocoCMINUS.setBounds(483, 480,
-		 * 29, 34); btnChocoCMINUS.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelPastries.add(btnChocoCMINUS); btnChocoCMINUS.addActionListener(e ->
-		 * removeFromOrder("Chocolate Cookies")); minusButtons.put("Chocolate Cookies",
-		 * btnChocoCMINUS);
-		 * 
-		 * JButton btnChocoCRemove = new JButton("✕"); btnChocoCRemove.setBounds(503,
-		 * 450, 25, 25); btnChocoCRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnChocoCRemove.setForeground(Color.RED);
-		 * btnChocoCRemove.setBackground(Color.WHITE);
-		 * btnChocoCRemove.setEnabled(false); panelPastries.add(btnChocoCRemove);
-		 * btnChocoCRemove.addActionListener(e ->
-		 * removeItemCompletely("Chocolate Cookies"));
-		 * removeButtons.put("Chocolate Cookies", btnChocoCRemove);
-		 */
-
-		/*
-		 * JButton btnRedVelvetCMInus = new JButton("-");
-		 * btnRedVelvetCMInus.setBounds(225, 480, 29, 34);
-		 * btnRedVelvetCMInus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelPastries.add(btnRedVelvetCMInus); btnRedVelvetCMInus.addActionListener(e
-		 * -> removeFromOrder("Red Velvet Cake")); minusButtons.put("Red Velvet Cake",
-		 * btnRedVelvetCMInus);
-		 * 
-		 * JButton btnRedVelvetCRemove = new JButton("✕");
-		 * btnRedVelvetCRemove.setBounds(245, 450, 25, 25);
-		 * btnRedVelvetCRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnRedVelvetCRemove.setForeground(Color.RED);
-		 * btnRedVelvetCRemove.setBackground(Color.WHITE);
-		 * btnRedVelvetCRemove.setEnabled(false);
-		 * panelPastries.add(btnRedVelvetCRemove);
-		 * btnRedVelvetCRemove.addActionListener(e ->
-		 * removeItemCompletely("Red Velvet Cake"));
-		 * removeButtons.put("Red Velvet Cake", btnRedVelvetCRemove);
-		 */
 
 		JPanel panelCold = new JPanel();
 		panelCold.setBackground(new Color(162, 114, 94));
@@ -614,24 +412,6 @@ public class Menu {
 			addToOrder("Spanish Latte", menu.get("Spanish Latte"));
 		});
 
-		/*
-		 * JButton btnSpanishLatteMinus = new JButton("-");
-		 * btnSpanishLatteMinus.setBounds(483, 150, 29, 34);
-		 * btnSpanishLatteMinus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelCold.add(btnSpanishLatteMinus); btnSpanishLatteMinus.addActionListener(e
-		 * -> removeFromOrder("Spanish Latte")); minusButtons.put("Spanish Latte",
-		 * btnSpanishLatteMinus);
-		 * 
-		 * JButton btnSpanishLRemove = new JButton("✕");
-		 * btnSpanishLRemove.setBounds(503, 120, 25, 25); btnSpanishLRemove.setFont(new
-		 * Font("Arial", Font.BOLD, 14)); btnSpanishLRemove.setForeground(Color.RED);
-		 * btnSpanishLRemove.setBackground(Color.WHITE);
-		 * btnSpanishLRemove.setEnabled(false); panelCold.add(btnSpanishLRemove);
-		 * btnSpanishLRemove.addActionListener(e ->
-		 * removeItemCompletely("Spanish Latte")); removeButtons.put("Spanish Latte",
-		 * btnSpanishLRemove);
-		 */
-
 		// AMERICANO
 
 		JButton btnAmericano = new JButton("Americano");
@@ -641,23 +421,6 @@ public class Menu {
 			lastClickedItem = "Americano";
 			addToOrder("Americano", menu.get("Americano"));
 		});
-
-		/*
-		 * JButton btnAmericanoMinus = new JButton("-");
-		 * btnAmericanoMinus.setBounds(225, 150, 29, 34); btnAmericanoMinus.setFont(new
-		 * Font("Arial", Font.BOLD, 7)); panelCold.add(btnAmericanoMinus);
-		 * btnAmericanoMinus.addActionListener(e -> removeFromOrder("Americano"));
-		 * minusButtons.put("Americano", btnAmericanoMinus);
-		 * 
-		 * JButton btnAmericanoRemove = new JButton("✕");
-		 * btnAmericanoRemove.setBounds(245, 120, 25, 25);
-		 * btnAmericanoRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnAmericanoRemove.setForeground(Color.RED);
-		 * btnAmericanoRemove.setBackground(Color.WHITE);
-		 * btnAmericanoRemove.setEnabled(false); panelCold.add(btnAmericanoRemove);
-		 * btnAmericanoRemove.addActionListener(e -> removeItemCompletely("Americano"));
-		 * removeButtons.put("Americano", btnAmericanoRemove);
-		 */
 
 		// WHITE MOCHA
 
@@ -669,22 +432,6 @@ public class Menu {
 			addToOrder("White Mocha", menu.get("White Mocha"));
 		});
 
-		/*
-		 * JButton btnWhiteMMInus = new JButton("-"); btnWhiteMMInus.setBounds(225, 480,
-		 * 29, 34); btnWhiteMMInus.setFont(new Font("Arial", Font.BOLD, 7));
-		 * panelCold.add(btnWhiteMMInus); btnWhiteMMInus.addActionListener(e ->
-		 * removeFromOrder("White Mocha")); minusButtons.put("White Mocha",
-		 * btnWhiteMMInus);
-		 * 
-		 * JButton btnWhiteMRemove = new JButton("✕"); btnWhiteMRemove.setBounds(245,
-		 * 450, 25, 25); btnWhiteMRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnWhiteMRemove.setForeground(Color.RED);
-		 * btnWhiteMRemove.setBackground(Color.WHITE);
-		 * btnWhiteMRemove.setEnabled(false); panelCold.add(btnWhiteMRemove);
-		 * btnWhiteMRemove.addActionListener(e -> removeItemCompletely("White Mocha"));
-		 * removeButtons.put("White Mocha", btnWhiteMRemove);
-		 */
-
 		// CARAMEL MACCHIATO COLD
 
 		JButton btnCaramelMC = new JButton("Caramel Macchiato Cold");
@@ -694,27 +441,6 @@ public class Menu {
 			lastClickedItem = "Caramel Macchiato Cold";
 			addToOrder("Caramel Macchiato Cold", menu.get("Caramel Macchiato Cold"));
 		});
-
-		/*
-		 * JButton btnCaramelMCMINUS = new JButton("-");
-		 * btnCaramelMCMINUS.setBounds(483, 480, 29, 34); btnCaramelMCMINUS.setFont(new
-		 * Font("Arial", Font.BOLD, 7)); panelCold.add(btnCaramelMCMINUS);
-		 * btnCaramelMCMINUS.addActionListener(e ->
-		 * removeFromOrder("Caramel Macchiato Cold"));
-		 * minusButtons.put("Caramel Macchiato Cold", btnCaramelMCMINUS);
-		 * 
-		 * JButton btnCaramelMCRemove = new JButton("✕");
-		 * btnCaramelMCRemove.setBounds(503, 450, 25, 25);
-		 * btnCaramelMCRemove.setFont(new Font("Arial", Font.BOLD, 14));
-		 * btnCaramelMCRemove.setForeground(Color.RED);
-		 * btnCaramelMCRemove.setBackground(Color.WHITE);
-		 * btnCaramelMCRemove.setEnabled(false); panelCold.add(btnCaramelMCRemove);
-		 * btnCaramelMCRemove.addActionListener(e ->
-		 * removeItemCompletely("Caramel Macchiato Cold"));
-		 * removeButtons.put("Caramel Macchiato Cold", btnCaramelMCRemove);
-		 */
-
-		///////////////////////////////
 
 		JLabel lblWhiteMocha = new JLabel("₱ 155");
 		lblWhiteMocha.setHorizontalAlignment(SwingConstants.CENTER);
@@ -835,10 +561,13 @@ public class Menu {
 		btnCont.setBounds(537, 822, 190, 91);
 		frame.getContentPane().add(btnCont);
 
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Jacob\\Downloads\\cafe\\icons\\menu bg.png"));
-		lblNewLabel.setBounds(0, 0, 752, 985);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblmenubg = new JLabel("New label");
+	    URL menubgurl = getClass().getResource("/resources/icons/menu bg.png");
+	    if (lblmenubg != null) {
+	    	lblmenubg.setIcon(new ImageIcon(menubgurl));
+	    }
+	    lblmenubg.setBounds(0, 0, 752, 985);
+		frame.getContentPane().add(lblmenubg);
 	}
 
 	public void removeFromOrder(String itemName) {
@@ -883,14 +612,6 @@ public class Menu {
 			double itemTotal = order.get(item);
 			int quantity = (int) (itemTotal / menu.get(item));
 			textAreaOrder.append(item + " x" + quantity + " - ₱" + String.format("%.2f", itemTotal) + "\n");
-
-			/*
-			 * if (quantity <= 1) { minusButtons.get(item).setEnabled(false); } else {
-			 * minusButtons.get(item).setEnabled(true); }
-			 * 
-			 * if (removeButtons.containsKey(item)) {
-			 * removeButtons.get(item).setEnabled(true); }
-			 */
 		}
 		textAreaOrder.append("\nTotal: ₱" + String.format("%.2f", total));
 		lblTotal.setText("Total: ₱" + String.format("%.2f", total));
@@ -907,7 +628,6 @@ public class Menu {
 	public void setVisible(boolean b) {
 
 		frame.setVisible(b);
-		// TODO Auto-generated method stub
 
 	}
 }
