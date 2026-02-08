@@ -35,6 +35,9 @@ public class Menu {
 	private JScrollPane scrollPane = new JScrollPane();
 	private LinkedHashMap<String, JButton> minusButtons = new LinkedHashMap<>();
 	private String lastClickedItem = "";
+	private JButton btnCold, btnHot, btnNonCof, btnPastries;
+    private Color normalColor = new Color(162, 114, 94);
+    private Color selectedColor = new Color(102, 69, 57);
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -452,18 +455,20 @@ public class Menu {
 		scrollPane.setViewportView(textAreaOrder);
 		textAreaOrder.setEditable(false);
 
-		JButton btnCold = new JButton("Cold");
+		btnCold = new JButton("Cold");
 		btnCold.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnCold.setBackground(new Color(240, 240, 240));
-		btnCold.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelCold.setVisible(true);
-				panelHot.setVisible(false);
-				panelNon.setVisible(false);
-				panelPastries.setVisible(false);
-			}
+		btnCold.setBackground(normalColor);
+		btnCold.setForeground(Color.BLACK);
+		btnCold.setBounds(37, 120, 140, 139);
+		addHoverEffect(btnCold);
+		btnCold.addActionListener(e -> {
+		    panelCold.setVisible(true);
+		    panelHot.setVisible(false);
+		    panelNon.setVisible(false);
+		    panelPastries.setVisible(false);
+		    highlightButton(btnCold);
 		});
-		btnCold.setBackground(new Color(162, 114, 94));
+		frame.getContentPane().add(btnCold);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(162, 114, 94));
@@ -473,49 +478,49 @@ public class Menu {
 		btnCold.setBounds(37, 120, 140, 139);
 		frame.getContentPane().add(btnCold);
 
-		JButton btnHot = new JButton("Hot");
+		btnHot = new JButton("Hot");
 		btnHot.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnHot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelHot.setVisible(true);
-				panelCold.setVisible(false);
-				panelNon.setVisible(false);
-				panelPastries.setVisible(false);
-				panel_1.setVisible(false);
-			}
-		});
-		btnHot.setBackground(new Color(162, 114, 94));
+		btnHot.setBackground(normalColor);
+		btnHot.setForeground(Color.BLACK);
 		btnHot.setBounds(37, 287, 140, 139);
+		addHoverEffect(btnHot);
+		btnHot.addActionListener(e -> {
+		    panelHot.setVisible(true);
+		    panelCold.setVisible(false);
+		    panelNon.setVisible(false);
+		    panelPastries.setVisible(false);
+		    highlightButton(btnHot);
+		});
 		frame.getContentPane().add(btnHot);
 
-		JButton btnPastries = new JButton("Pastries");
+		btnPastries = new JButton("Pastries");
 		btnPastries.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnPastries.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelPastries.setVisible(true);
-				panelCold.setVisible(false);
-				panelHot.setVisible(false);
-				panelNon.setVisible(false);
-				panel_1.setVisible(false);
-			}
-		});
+		btnPastries.setBackground(normalColor);
+		btnPastries.setForeground(Color.BLACK);
 		btnPastries.setBounds(37, 623, 140, 139);
-		frame.getContentPane().add(btnPastries);
-		btnPastries.setBackground(new Color(162, 114, 94));
-
-		JButton btnNonCof = new JButton("Non-Coffee");
-		btnNonCof.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNonCof.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelNon.setVisible(true);
-				panelCold.setVisible(false);
-				panelHot.setVisible(false);
-				panelPastries.setVisible(false);
-				panel_1.setVisible(false);
-			}
+		addHoverEffect(btnPastries);
+		btnPastries.addActionListener(e -> {
+		    panelPastries.setVisible(true);
+		    panelCold.setVisible(false);
+		    panelHot.setVisible(false);
+		    panelNon.setVisible(false);
+		    highlightButton(btnPastries);
 		});
-		btnNonCof.setBackground(new Color(162, 114, 94));
+		frame.getContentPane().add(btnPastries);
+
+		btnNonCof = new JButton("Non-Coffee");
+		btnNonCof.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNonCof.setBackground(normalColor);
+		btnNonCof.setForeground(Color.BLACK);
 		btnNonCof.setBounds(37, 456, 140, 139);
+		addHoverEffect(btnNonCof);
+		btnNonCof.addActionListener(e -> {
+		    panelNon.setVisible(true);
+		    panelCold.setVisible(false);
+		    panelHot.setVisible(false);
+		    panelPastries.setVisible(false);
+		    highlightButton(btnNonCof);
+		});
 		frame.getContentPane().add(btnNonCof);
 
 		JButton btnCont = new JButton("Continue");
@@ -618,6 +623,15 @@ public class Menu {
 		updateDisplay();
 	}
 
+	private void highlightButton(JButton selectedBtn) {
+	    btnCold.setBackground(normalColor);
+	    btnHot.setBackground(normalColor);
+	    btnNonCof.setBackground(normalColor);
+	    btnPastries.setBackground(normalColor);
+	    
+	    selectedBtn.setBackground(selectedColor);
+	}
+	
 	private void updateDisplay() {
 		textAreaOrder.setText("Order:\n");
 		for (String item : order.keySet()) {
