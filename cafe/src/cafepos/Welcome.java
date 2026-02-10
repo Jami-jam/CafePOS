@@ -51,7 +51,7 @@ public class Welcome {
 		}
 
 		int originalY = 788;
-		int bounceDistance = 12;
+		int bounceDistance = 16;
 		btnNewButton.setBounds(256, originalY, 241, 160);
 
 		Timer bounceTimer = new Timer(80, new ActionListener() {

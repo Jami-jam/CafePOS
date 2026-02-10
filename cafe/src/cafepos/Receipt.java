@@ -2,6 +2,8 @@ package cafepos;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import javax.swing.JFrame;
@@ -14,6 +16,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.Timer;
+import java.awt.print.*;
+import java.util.StringTokenizer;
 
 public class Receipt {
 
@@ -21,6 +27,7 @@ public class Receipt {
 	private JTextArea textAreaReceipt;
 	private JScrollPane scrollPane;
 	private JLabel lblTotalAmount;
+	private JLabel lblPrintStatus;
 	private double total;
 	private LinkedHashMap<String, Double> order;
 	private static int orderCounter = 0;
@@ -90,6 +97,14 @@ public class Receipt {
 		lblTotalAmount.setFont(new Font("Arial", Font.BOLD, 24));
 		lblTotalAmount.setBounds(550, 499, 150, 40);
 		frame.getContentPane().add(lblTotalAmount);
+		
+				lblPrintStatus = new JLabel("");
+				lblPrintStatus.setHorizontalAlignment(SwingConstants.CENTER);
+				lblPrintStatus.setFont(new Font("Arial", Font.BOLD, 20));
+				lblPrintStatus.setForeground(Color.GREEN);
+				lblPrintStatus.setBounds(50, 537, 668, 40);
+				lblPrintStatus.setVisible(false);
+				frame.getContentPane().add(lblPrintStatus);
 
 		JLabel lblTotal = new JLabel("TOTAL AMOUNT:");
 		lblTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -105,20 +120,25 @@ public class Receipt {
 
 		updateReceiptDisplay(order, total);
 
-		// BUTTONS
 		JButton btnPrintReceipt = new JButton("PRINT RECEIPT");
+		btnPrintReceipt.setForeground(new Color(255, 255, 255));
+		btnPrintReceipt.setBackground(new Color(162, 114, 94));
 		btnPrintReceipt.setFont(new Font("Arial", Font.BOLD, 16));
 		btnPrintReceipt.setBounds(50, 588, 220, 60);
 		btnPrintReceipt.addActionListener(e -> printReceipt());
 		frame.getContentPane().add(btnPrintReceipt);
 
 		JButton btnNewOrder = new JButton("New Order");
+		btnNewOrder.setBackground(new Color(162, 114, 94));
+		btnNewOrder.setForeground(new Color(255, 255, 255));
 		btnNewOrder.setFont(new Font("Arial", Font.BOLD, 16));
 		btnNewOrder.setBounds(295, 588, 150, 60);
 		btnNewOrder.addActionListener(e -> newOrder());
 		frame.getContentPane().add(btnNewOrder);
 
 		JButton btnBack = new JButton("Back to Menu");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(162, 114, 94));
 		btnBack.setFont(new Font("Arial", Font.BOLD, 16));
 		btnBack.setBounds(470, 588, 248, 60);
 		btnBack.addActionListener(e -> {
@@ -127,15 +147,12 @@ public class Receipt {
 			mainApp.setVisible(true);
 		});
 		frame.getContentPane().add(btnBack);
-		
+
 		JLabel lblbg = new JLabel("New label");
 		URL bgUrl = getClass().getResource("/icons/menu bg.png");
 		if (bgUrl != null) {
 			lblbg.setIcon(new ImageIcon(bgUrl));
-			
-		lblbg.setBounds(0, 0, 752, 985);
-		frame.getContentPane().add(lblbg);
-	    }
+		}
 		lblbg.setBounds(0, 0, 752, 985);
 		frame.getContentPane().add(lblbg);
 	}
@@ -190,7 +207,6 @@ public class Receipt {
 		menu.put("Red Velvet Cake", 170.0);
 		menu.put("Chocolate Cookies", 80.0);
 		menu.put("Hazelnut Mocha", 165.0);
-		menu.put("Cafe Latte", 120.0);
 		menu.put("Caramel Macchiato Hot", 125.0);
 		menu.put("Caramel Macchiato Cold", 165.0);
 		return menu.getOrDefault(itemName, 0.0);
@@ -198,14 +214,80 @@ public class Receipt {
 
 	private void printReceipt() {
 		orderCounter++;
-		System.out.println("PRINTING RECEIPT # " + String.format("%03d", orderCounter));
-		System.out.println(textAreaReceipt.getText());
 
-		JLabel printMsg = new JLabel("Receipt Printed Successfully!");
-		printMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		printMsg.setFont(new Font("Arial", Font.BOLD, 18));
-		printMsg.setBounds(200, 450, 368, 30);
-		frame.getContentPane().add(printMsg);
+		System.out.println("PRINTING RECEIPT # " + String.format("%03d", orderCounter));
+		System.out.println("========================================");
+		System.out.println(createPrintReceiptText());
+		System.out.println("========================================");
+
+		try {
+			PrinterJob job = PrinterJob.getPrinterJob();
+			job.setPrintable(new ReceiptPrintable(createPrintReceiptText()));
+
+			if (job.printDialog()) {
+				job.print();
+				showPrintStatus("Receipt Printed to Printer!");
+				System.out.println("Receipt sent to physical printer!");
+			} else {
+				showPrintStatus("Print cancelled by user.");
+			}
+		} catch (PrinterException e) {
+			showPrintStatus("Print failed: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	private String createPrintReceiptText() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("================================\n");
+		sb.append("        CAFE POS SYSTEM\n");
+		sb.append("================================\n\n");
+		sb.append("Order #: ").append(String.format("%03d", orderCounter)).append("\n\n");
+		sb.append(textAreaReceipt.getText());
+		sb.append("\n\nThank you for your purchase!\n");
+		sb.append("CAFE POS SYSTEM\n");
+		return sb.toString();
+	}
+
+	private void showPrintStatus(String message) {
+		lblPrintStatus.setText(message);
+		lblPrintStatus.setVisible(true);
+		frame.repaint();
+
+		Timer timer = new Timer(4000, e -> {
+			lblPrintStatus.setVisible(false);
+			frame.repaint();
+		});
+		timer.setRepeats(false);
+		timer.start();
+	}
+
+	private class ReceiptPrintable implements Printable {
+		private String receiptText;
+
+		public ReceiptPrintable(String text) {
+			this.receiptText = text;
+		}
+
+		public int print(Graphics g, PageFormat pf, int pageIndex) {
+			if (pageIndex > 0)
+				return Printable.NO_SUCH_PAGE;
+
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.translate(pf.getImageableX() + 10, pf.getImageableY() + 10);
+
+			Font font = new Font("Monospaced", Font.PLAIN, 9);
+			g2d.setFont(font);
+
+			StringTokenizer st = new StringTokenizer(receiptText, "\n");
+			int y = 0;
+			while (st.hasMoreTokens()) {
+				String line = st.nextToken();
+				g2d.drawString(line, 0, y += 12);
+			}
+
+			return Printable.PAGE_EXISTS;
+		}
 	}
 
 	private void newOrder() {

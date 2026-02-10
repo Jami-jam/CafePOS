@@ -36,8 +36,8 @@ public class Menu {
 	private LinkedHashMap<String, JButton> minusButtons = new LinkedHashMap<>();
 	private String lastClickedItem = "";
 	private JButton btnCold, btnHot, btnNonCof, btnPastries;
-    private Color normalColor = new Color(162, 114, 94);
-    private Color selectedColor = new Color(102, 69, 57);
+	private Color normalColor = new Color(162, 114, 94);
+	private Color selectedColor = new Color(102, 69, 57);
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -87,9 +87,406 @@ public class Menu {
 		URL menuUrl = getClass().getResource("/icons/menu.png");
 		if (menuUrl != null) {
 			lblMenu.setIcon(new ImageIcon(menuUrl));
-		} else {
-			lblMenu.setText("?");
 		}
+
+		JPanel panelPastries = new JPanel();
+		panelPastries.setBackground(new Color(162, 114, 94));
+		panelPastries.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelPastries.setBounds(197, 43, 530, 719);
+		frame.getContentPane().add(panelPastries);
+		panelPastries.setLayout(null);
+
+		///////////////////////////////
+
+		// CROISSANT
+
+		JButton btnCroissant = new JButton("");
+		btnCroissant.setBounds(20, 22, 226, 273);
+		addHoverEffect(btnCroissant);
+		panelPastries.add(btnCroissant);
+		URL croissantURL = getClass().getResource("/icons/Croissant.png");
+		if (croissantURL != null) {
+			btnCroissant.setIcon(new ImageIcon(croissantURL));
+		}
+		btnCroissant.addActionListener(e -> {
+			lastClickedItem = "Croissant";
+			addToOrder("Croissant", menu.get("Croissant"));
+
+		});
+
+		// EGG TART
+
+		JButton btnEggTart = new JButton("");
+		btnEggTart.setBounds(285, 22, 226, 273);
+		addHoverEffect(btnEggTart);
+		panelPastries.add(btnEggTart);
+		URL eggTartURL = getClass().getResource("/icons/EggTart.png");
+		if (eggTartURL != null) {
+			btnEggTart.setIcon(new ImageIcon(eggTartURL));
+		}
+		btnEggTart.addActionListener(e -> {
+			lastClickedItem = "Egg Tart";
+			addToOrder("Egg Tart", menu.get("Egg Tart"));
+		});
+
+		// CHOCO COOKIES
+
+		JButton btnChocoC = new JButton("");
+		btnChocoC.setBounds(285, 371, 226, 272);
+		addHoverEffect(btnChocoC);
+		panelPastries.add(btnChocoC);
+		URL chocoCURL = getClass().getResource("/icons/ChocolateCookies.png");
+		if (chocoCURL != null) {
+			btnChocoC.setIcon(new ImageIcon(chocoCURL));
+		}
+		btnChocoC.addActionListener(e -> {
+			lastClickedItem = "Chocolate Cookies";
+			addToOrder("Chocolate Cookies", menu.get("Chocolate Cookies"));
+		});
+
+		// RED VELVET CAKE
+
+		JButton btnRedVelvetC = new JButton("");
+		btnRedVelvetC.setBounds(20, 371, 226, 273);
+		addHoverEffect(btnRedVelvetC);
+		panelPastries.add(btnRedVelvetC);
+		URL redvelvetCURL = getClass().getResource("/icons/RedVelvet.png");
+		if (redvelvetCURL != null) {
+			btnRedVelvetC.setIcon(new ImageIcon(redvelvetCURL));
+		}
+		btnRedVelvetC.addActionListener(e -> {
+			lastClickedItem = "Red Velvet Cake";
+			addToOrder("Red Velvet Cake", menu.get("Red Velvet Cake"));
+		});
+
+		///////////////////////////////
+
+		JLabel lblCroissant = new JLabel("<html><center>Croissant<br>₱ 60</html></center>");
+		lblCroissant.setForeground(new Color(0, 0, 0));
+		lblCroissant.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblCroissant.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCroissant.setBounds(30, 306, 212, 48);
+		panelPastries.add(lblCroissant);
+
+		JLabel lblEggTart = new JLabel("<html><center>Egg Tart<br>₱ 70</html></center>");
+		lblEggTart.setForeground(new Color(0, 0, 0));
+		lblEggTart.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblEggTart.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEggTart.setBounds(285, 306, 212, 48);
+		panelPastries.add(lblEggTart);
+
+		JLabel lblRedVelvetC = new JLabel("<html><center>Red Velvet Cake<br>₱ 170</html></center>");
+		lblRedVelvetC.setForeground(new Color(0, 0, 0));
+		lblRedVelvetC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRedVelvetC.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblRedVelvetC.setBounds(30, 655, 212, 48);
+		panelPastries.add(lblRedVelvetC);
+
+		JLabel lblChocoC = new JLabel("<html><center>Chocolate Cookies<br>₱ 80</html></center>");
+		lblChocoC.setForeground(new Color(0, 0, 0));
+		lblChocoC.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblChocoC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChocoC.setBounds(285, 655, 212, 48);
+		panelPastries.add(lblChocoC);
+		panelPastries.setVisible(false);
+
+		JPanel panelNon = new JPanel();
+		panelNon.setBackground(new Color(162, 114, 94));
+		panelNon.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelNon.setBounds(197, 43, 530, 719);
+		frame.getContentPane().add(panelNon);
+		panelNon.setLayout(null);
+
+		JLabel lblStrawberryF = new JLabel("<html><center>Strawberry Frappe<br>₱ 180</html></center>");
+		lblStrawberryF.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblStrawberryF.setForeground(new Color(0, 0, 0));
+		lblStrawberryF.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStrawberryF.setBounds(285, 655, 212, 48);
+		panelNon.add(lblStrawberryF);
+
+		JLabel lblMatchaS = new JLabel("<html><center>Matcha Strawberry<br>₱ 200</html></center>");
+		lblMatchaS.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblMatchaS.setForeground(new Color(0, 0, 0));
+		lblMatchaS.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMatchaS.setBounds(30, 655, 212, 48);
+		panelNon.add(lblMatchaS);
+
+		///////////////////////////////
+
+		// MATCHA STRAWBERRY
+
+		JButton btnMatchaS = new JButton("");
+		btnMatchaS.setBounds(20, 371, 226, 273);
+		addHoverEffect(btnMatchaS);
+		panelNon.add(btnMatchaS);
+		URL matchaSURL = getClass().getResource("/icons/MatchaStrawberry.png");
+		if (matchaSURL != null) {
+			btnMatchaS.setIcon(new ImageIcon(matchaSURL));
+		}
+		btnMatchaS.addActionListener(e -> {
+			lastClickedItem = "Matcha Strawberry";
+			addToOrder("Matcha Strawberry", menu.get("Matcha Strawberry"));
+		});
+
+		// STRAWBERRY FRAPPE
+
+		JButton btnStrawberryF = new JButton("");
+		btnStrawberryF.setBounds(285, 371, 226, 273);
+		addHoverEffect(btnStrawberryF);
+		panelNon.add(btnStrawberryF);
+		URL strawberryFURL = getClass().getResource("/icons/StrawberryFrappe.png");
+		if (strawberryFURL != null) {
+			btnStrawberryF.setIcon(new ImageIcon(strawberryFURL));
+		}
+		btnStrawberryF.addActionListener(e -> {
+			lastClickedItem = "Strawberry Frappe";
+			addToOrder("Strawberry Frappe", menu.get("Strawberry Frappe"));
+		});
+
+		// MATCHA LATTE
+
+		JButton btnMatchaL = new JButton("");
+		btnMatchaL.setBounds(285, 22, 226, 273);
+		addHoverEffect(btnMatchaL);
+		panelNon.add(btnMatchaL);
+		URL matchaLURL = getClass().getResource("/icons/MatchaLatte.png");
+		if (matchaLURL != null) {
+			btnMatchaL.setIcon(new ImageIcon(matchaLURL));
+		}
+		btnMatchaL.addActionListener(e -> {
+			lastClickedItem = "Matcha Latte";
+			addToOrder("Matcha Latte", menu.get("Matcha Latte"));
+		});
+
+		// CLASSIC CHOCOLATE
+
+		JButton btnClassicC = new JButton("");
+		btnClassicC.setBounds(20, 22, 226, 273);
+		addHoverEffect(btnClassicC);
+		panelNon.add(btnClassicC);
+		URL classicCURL = getClass().getResource("/icons/ClassicChocolate.png");
+		if (classicCURL != null) {
+			btnClassicC.setIcon(new ImageIcon(classicCURL));
+		}
+		btnClassicC.addActionListener(e -> {
+			lastClickedItem = "Classic Chocolate";
+			addToOrder("Classic Chocolate", menu.get("Classic Chocolate"));
+		});
+
+		///////////////////////////////
+
+		JLabel lblMatchaL = new JLabel("<html><center>Matcha Latte<br>₱ 170</html></center>");
+		lblMatchaL.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblMatchaL.setForeground(new Color(0, 0, 0));
+		lblMatchaL.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMatchaL.setBounds(285, 306, 212, 48);
+		panelNon.add(lblMatchaL);
+
+		JLabel lblClassicC = new JLabel("<html><center>Classic Chocolate<br>₱ 120</html></center>");
+		lblClassicC.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblClassicC.setForeground(new Color(0, 0, 0));
+		lblClassicC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClassicC.setBounds(30, 306, 212, 48);
+		panelNon.add(lblClassicC);
+		panelNon.setVisible(false);
+
+		JPanel panelHot = new JPanel();
+		panelHot.setBackground(new Color(162, 114, 94));
+		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelHot.setBounds(197, 43, 530, 719);
+		frame.getContentPane().add(panelHot);
+		panelHot.setLayout(null);
+		panelHot.setVisible(false);
+
+		JLabel lblCaramelMH = new JLabel("<html><center>Caramel Macchiato<br>₱ 125</html></center>");
+		lblCaramelMH.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblCaramelMH.setForeground(new Color(0, 0, 0));
+		lblCaramelMH.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCaramelMH.setBounds(285, 655, 212, 48);
+		panelHot.add(lblCaramelMH);
+
+		JLabel lblEspresso = new JLabel("<html><center>Espresso<br>₱ 100</html></center>");
+		lblEspresso.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblEspresso.setForeground(new Color(0, 0, 0));
+		lblEspresso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEspresso.setBounds(30, 655, 212, 48);
+		panelHot.add(lblEspresso);
+
+		JLabel lblCafeLatte = new JLabel("<html><center>Cafe Latte<br>₱ 120</html></center>");
+		lblCafeLatte.setForeground(new Color(0, 0, 0));
+		lblCafeLatte.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblCafeLatte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCafeLatte.setBounds(285, 306, 212, 48);
+		panelHot.add(lblCafeLatte);
+
+		///////////////////////////////
+
+		// BREWED
+
+		JButton btnBrewed = new JButton("");
+		btnBrewed.setBounds(20, 22, 226, 273);
+		addHoverEffect(btnBrewed);
+		panelHot.add(btnBrewed);
+		URL brewedURL = getClass().getResource("/icons/Brewed.png");
+		if (brewedURL != null) {
+			btnBrewed.setIcon(new ImageIcon(brewedURL));
+		}
+		btnBrewed.addActionListener(e -> {
+			lastClickedItem = "Brewed";
+			addToOrder("Brewed", menu.get("Brewed"));
+		});
+
+		// CAFE LATTE
+
+		JButton btnCafeLatte = new JButton("");
+		btnCafeLatte.setBounds(285, 22, 226, 273);
+		addHoverEffect(btnCafeLatte);
+		panelHot.add(btnCafeLatte);
+		URL cafeLURL = getClass().getResource("/icons/CafeLatte.png");
+		if (cafeLURL != null) {
+			btnCafeLatte.setIcon(new ImageIcon(cafeLURL));
+		}
+		btnCafeLatte.addActionListener(e -> {
+			lastClickedItem = "Cafe Latte";
+			addToOrder("Cafe Latte", menu.get("Cafe Latte"));
+		});
+
+		// ESPRESSO
+
+		JButton btnEspresso = new JButton("");
+		btnEspresso.setBounds(20, 371, 226, 273);
+		addHoverEffect(btnEspresso);
+		panelHot.add(btnEspresso);
+		URL espressoURL = getClass().getResource("/icons/Espresso.png");
+		if (espressoURL != null) {
+			btnEspresso.setIcon(new ImageIcon(espressoURL));
+		}
+		btnEspresso.addActionListener(e -> {
+			lastClickedItem = "Espresso";
+			addToOrder("Espresso", menu.get("Espresso"));
+		});
+
+		// CARAMEL MACCHIATO HOT
+
+		JButton btnCaramelMH = new JButton("");
+		btnCaramelMH.setBounds(285, 371, 226, 273);
+		addHoverEffect(btnCaramelMH);
+		panelHot.add(btnCaramelMH);
+		URL caramelMHURL = getClass().getResource("/icons/CaramelMacchiatoH.png");
+		if (caramelMHURL != null) {
+			btnCaramelMH.setIcon(new ImageIcon(caramelMHURL));
+		}
+		btnCaramelMH.addActionListener(e -> {
+			lastClickedItem = "Caramel Macchiato Hot";
+			addToOrder("Caramel Macchiato Hot", menu.get("Caramel Macchiato Hot"));
+		});
+
+		///////////////////////////////
+
+		JLabel lblBrewed = new JLabel("<html><center>Brewed<br>₱ 110</html><c/enter>");
+		lblBrewed.setForeground(new Color(0, 0, 0));
+		lblBrewed.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblBrewed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBrewed.setBounds(30, 306, 212, 48);
+		panelHot.add(lblBrewed);
+
+		JPanel panelCold = new JPanel();
+		panelCold.setBackground(new Color(162, 114, 94));
+		panelCold.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelCold.setBounds(197, 43, 530, 719);
+		frame.getContentPane().add(panelCold);
+		panelCold.setLayout(null);
+
+		///////////////////////////////
+
+		// SPANISH LATTE
+
+		JButton btnSpanishLatte = new JButton("");
+		btnSpanishLatte.setBounds(285, 22, 226, 273);
+		addHoverEffect(btnSpanishLatte);
+		panelCold.add(btnSpanishLatte);
+		URL spanishLURL = getClass().getResource("/icons/SpanishLatte.png");
+		if (spanishLURL != null) {
+			btnSpanishLatte.setIcon(new ImageIcon(spanishLURL));
+		}
+		btnSpanishLatte.addActionListener(e -> {
+			lastClickedItem = "Spanish Latte";
+			addToOrder("Spanish Latte", menu.get("Spanish Latte"));
+		});
+
+		// AMERICANO
+
+		JButton btnAmericano = new JButton("");
+		btnAmericano.setBounds(20, 22, 226, 273);
+		addHoverEffect(btnAmericano);
+		panelCold.add(btnAmericano);
+		URL americanoURL = getClass().getResource("/icons/Americano.png");
+		if (americanoURL != null) {
+			btnAmericano.setIcon(new ImageIcon(americanoURL));
+		}
+		btnAmericano.addActionListener(e -> {
+			lastClickedItem = "Americano";
+			addToOrder("Americano", menu.get("Americano"));
+		});
+
+		// WHITE MOCHA
+
+		JButton btnWhiteMocha = new JButton("");
+		btnWhiteMocha.setBounds(20, 371, 226, 273);
+		addHoverEffect(btnWhiteMocha);
+		panelCold.add(btnWhiteMocha);
+		URL whiteMURL = getClass().getResource("/icons/WhiteMocha.png");
+		if (whiteMURL != null) {
+			btnWhiteMocha.setIcon(new ImageIcon(whiteMURL));
+		}
+		btnWhiteMocha.addActionListener(e -> {
+			lastClickedItem = "White Mocha";
+			addToOrder("White Mocha", menu.get("White Mocha"));
+		});
+
+		// CARAMEL MACCHIATO COLD
+
+		JButton btnCaramelMC = new JButton("");
+		btnCaramelMC.setBounds(285, 371, 226, 273);
+		addHoverEffect(btnCaramelMC);
+		panelCold.add(btnCaramelMC);
+		URL caramelMCURL = getClass().getResource("/icons/CaramelMacchiatoC.png");
+		if (caramelMCURL != null) {
+			btnCaramelMC.setIcon(new ImageIcon(caramelMCURL));
+		}
+		btnCaramelMC.addActionListener(e -> {
+			lastClickedItem = "Caramel Macchiato Cold";
+			addToOrder("Caramel Macchiato Cold", menu.get("Caramel Macchiato Cold"));
+		});
+
+		JLabel lblWhiteMocha = new JLabel("<html><center>White Mocha<br>₱ 155</center></html>");
+		lblWhiteMocha.setForeground(new Color(0, 0, 0));
+		lblWhiteMocha.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblWhiteMocha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWhiteMocha.setBounds(30, 655, 212, 48);
+		panelCold.add(lblWhiteMocha);
+
+		JLabel lblCaramelMC = new JLabel("<html><center>Caramel Macchiato<br>₱ 165</center></html>");
+		lblCaramelMC.setForeground(new Color(0, 0, 0));
+		lblCaramelMC.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblCaramelMC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCaramelMC.setBounds(285, 655, 212, 48);
+		panelCold.add(lblCaramelMC);
+
+		JLabel lblAmericano = new JLabel("<html><center>Americano<br>₱ 120</center></html>");
+		lblAmericano.setForeground(new Color(0, 0, 0));
+		lblAmericano.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblAmericano.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmericano.setBounds(30, 306, 212, 48);
+		panelCold.add(lblAmericano);
+
+		JLabel lblSpanishLatte = new JLabel("<html><center>Spanish Latte<br>₱ 160</center></html>");
+		lblSpanishLatte.setForeground(new Color(0, 0, 0));
+		lblSpanishLatte.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblSpanishLatte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpanishLatte.setBounds(285, 306, 212, 48);
+		panelCold.add(lblSpanishLatte);
+		panelCold.setVisible(false);
 		lblMenu.setBounds(20, 11, 167, 98);
 		frame.getContentPane().add(lblMenu);
 		lblMenu.setFont(new Font("Malgun Gothic Semilight", Font.BOLD, 30));
@@ -131,313 +528,6 @@ public class Menu {
 		});
 		universalPanel.add(btnRemove);
 
-		JPanel panelPastries = new JPanel();
-		panelPastries.setBackground(new Color(162, 114, 94));
-		panelPastries.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelPastries.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panelPastries);
-		panelPastries.setLayout(null);
-
-		///////////////////////////////
-
-		// CROISSANT
-
-		JButton btnCroissant = new JButton("Croissant");
-		btnCroissant.setBounds(20, 63, 234, 232);
-		addHoverEffect(btnCroissant);
-		panelPastries.add(btnCroissant);
-		btnCroissant.addActionListener(e -> {
-			lastClickedItem = "Croissant";
-			addToOrder("Croissant", menu.get("Croissant"));
-
-		});
-
-		// EGG TART
-
-		JButton btnEggTart = new JButton("Egg Tart");
-		btnEggTart.setBounds(275, 63, 234, 232);
-		addHoverEffect(btnEggTart);
-		panelPastries.add(btnEggTart);
-		btnEggTart.addActionListener(e -> {
-			lastClickedItem = "Egg Tart";
-			addToOrder("Egg Tart", menu.get("Egg Tart"));
-		});
-
-		// CHOCO COOKIES
-
-		JButton btnChocoC = new JButton("Chocolate Cookies");
-		btnChocoC.setBounds(275, 398, 234, 232);
-		addHoverEffect(btnChocoC);
-		panelPastries.add(btnChocoC);
-		btnChocoC.addActionListener(e -> {
-			lastClickedItem = "Chocolate Cookies";
-			addToOrder("Chocolate Cookies", menu.get("Chocolate Cookies"));
-		});
-
-		// RED VELVET CAKE
-
-		JButton btnRedVelvetC = new JButton("Red Velvet Cake");
-		btnRedVelvetC.setBounds(20, 398, 234, 232);
-		addHoverEffect(btnRedVelvetC);
-		panelPastries.add(btnRedVelvetC);
-		btnRedVelvetC.addActionListener(e -> {
-			lastClickedItem = "Red Velvet Cake";
-			addToOrder("Red Velvet Cake", menu.get("Red Velvet Cake"));
-		});
-
-		///////////////////////////////
-
-		JLabel lblCroissant = new JLabel("₱ 60");
-		lblCroissant.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblCroissant.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCroissant.setBounds(30, 306, 212, 34);
-		panelPastries.add(lblCroissant);
-
-		JLabel lblEggTart = new JLabel("₱ 70");
-		lblEggTart.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblEggTart.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEggTart.setBounds(285, 306, 212, 34);
-		panelPastries.add(lblEggTart);
-
-		JLabel lblRedVelvetC = new JLabel("₱ 170");
-		lblRedVelvetC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRedVelvetC.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblRedVelvetC.setBounds(30, 638, 212, 34);
-		panelPastries.add(lblRedVelvetC);
-
-		JLabel lblChocoC = new JLabel("₱ 80");
-		lblChocoC.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblChocoC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChocoC.setBounds(285, 638, 212, 34);
-		panelPastries.add(lblChocoC);
-		panelPastries.setVisible(false);
-
-		JPanel panelNon = new JPanel();
-		panelNon.setBackground(new Color(162, 114, 94));
-		panelNon.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelNon.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panelNon);
-		panelNon.setLayout(null);
-
-		JLabel lblStrawberryF = new JLabel("₱ 180");
-		lblStrawberryF.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStrawberryF.setBounds(285, 638, 212, 34);
-		panelNon.add(lblStrawberryF);
-
-		JLabel lblMatchaS = new JLabel("₱ 200");
-		lblMatchaS.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMatchaS.setBounds(30, 638, 212, 34);
-		panelNon.add(lblMatchaS);
-
-		///////////////////////////////
-
-		// MATCHA STRAWBERRY
-
-		JButton btnMatchaS = new JButton("Matcha Strawberry");
-		btnMatchaS.setBounds(20, 398, 234, 232);
-		addHoverEffect(btnMatchaS);
-		panelNon.add(btnMatchaS);
-		btnMatchaS.addActionListener(e -> {
-			lastClickedItem = "Matcha Strawberry";
-			addToOrder("Matcha Strawberry", menu.get("Matcha Strawberry"));
-		});
-
-		// STRAWBERRY FRAPPE
-
-		JButton btnStrawberryF = new JButton("Strawberry Frappe");
-		btnStrawberryF.setBounds(275, 398, 234, 232);
-		addHoverEffect(btnStrawberryF);
-		panelNon.add(btnStrawberryF);
-		btnStrawberryF.addActionListener(e -> {
-			lastClickedItem = "Strawberry Frappe";
-			addToOrder("Strawberry Frappe", menu.get("Strawberry Frappe"));
-		});
-
-		// MATCHA LATTE
-
-		JButton btnMatchaL = new JButton("Matcha Latte");
-		btnMatchaL.setBounds(275, 63, 234, 232);
-		addHoverEffect(btnMatchaL);
-		panelNon.add(btnMatchaL);
-		btnMatchaL.addActionListener(e -> {
-			lastClickedItem = "Matcha Latte";
-			addToOrder("Matcha Latte", menu.get("Matcha Latte"));
-		});
-
-		// CLASSIC CHOCOLATE
-
-		JButton btnClassicC = new JButton("Classic Chocolate");
-		btnClassicC.setBounds(20, 63, 234, 232);
-		addHoverEffect(btnClassicC);
-		panelNon.add(btnClassicC);
-		btnClassicC.addActionListener(e -> {
-			lastClickedItem = "Classic Chocolate";
-			addToOrder("Classic Chocolate", menu.get("Classic Chocolate"));
-		});
-
-		///////////////////////////////
-
-		JLabel lblMatchaL = new JLabel("₱ 170");
-		lblMatchaL.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMatchaL.setBounds(285, 306, 212, 34);
-		panelNon.add(lblMatchaL);
-
-		JLabel lblClassicC = new JLabel("₱ 120");
-		lblClassicC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblClassicC.setBounds(30, 306, 212, 34);
-		panelNon.add(lblClassicC);
-		panelNon.setVisible(false);
-
-		JPanel panelHot = new JPanel();
-		panelHot.setBackground(new Color(162, 114, 94));
-		panelHot.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelHot.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panelHot);
-		panelHot.setLayout(null);
-		panelHot.setVisible(false);
-
-		JLabel lblCaramelMH = new JLabel("₱ 125");
-		lblCaramelMH.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaramelMH.setBounds(285, 638, 212, 34);
-		panelHot.add(lblCaramelMH);
-
-		JLabel lblEspresso = new JLabel("₱ 100");
-		lblEspresso.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEspresso.setBounds(30, 638, 212, 34);
-		panelHot.add(lblEspresso);
-
-		JLabel lblCafeLatte = new JLabel("₱ 120");
-		lblCafeLatte.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCafeLatte.setBounds(285, 306, 212, 34);
-		panelHot.add(lblCafeLatte);
-
-		///////////////////////////////
-
-		// BREWED
-
-		JButton btnBrewed = new JButton("Brewed");
-		btnBrewed.setBounds(20, 63, 234, 232);
-		addHoverEffect(btnBrewed);
-		panelHot.add(btnBrewed);
-		btnBrewed.addActionListener(e -> {
-			lastClickedItem = "Brewed";
-			addToOrder("Brewed", menu.get("Brewed"));
-		});
-
-		// CAFE LATTE
-
-		JButton btnCafeLatte = new JButton("Cafe Latte");
-		btnCafeLatte.setBounds(275, 63, 234, 232);
-		addHoverEffect(btnCafeLatte);
-		panelHot.add(btnCafeLatte);
-		btnCafeLatte.addActionListener(e -> {
-			lastClickedItem = "Cafe Latte";
-			addToOrder("Cafe Latte", menu.get("Cafe Latte"));
-		});
-
-		// ESPRESSO
-
-		JButton btnEspresso = new JButton("Espresso");
-		btnEspresso.setBounds(20, 398, 234, 232);
-		addHoverEffect(btnEspresso);
-		panelHot.add(btnEspresso);
-		btnEspresso.addActionListener(e -> {
-			lastClickedItem = "Espresso";
-			addToOrder("Espresso", menu.get("Espresso"));
-		});
-
-		// CARAMEL MACCHIATO HOT
-
-		JButton btnCaramelMH = new JButton("Caramel Macchiato Hot");
-		btnCaramelMH.setBounds(275, 398, 234, 232);
-		addHoverEffect(btnCaramelMH);
-		panelHot.add(btnCaramelMH);
-		btnCaramelMH.addActionListener(e -> {
-			lastClickedItem = "Caramel Macchiato Hot";
-			addToOrder("Caramel Macchiato Hot", menu.get("Caramel Macchiato Hot"));
-		});
-
-		///////////////////////////////
-
-		JLabel lblBrewed = new JLabel("₱ 110");
-		lblBrewed.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBrewed.setBounds(30, 306, 212, 34);
-		panelHot.add(lblBrewed);
-
-		JPanel panelCold = new JPanel();
-		panelCold.setBackground(new Color(162, 114, 94));
-		panelCold.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelCold.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panelCold);
-		panelCold.setLayout(null);
-
-		///////////////////////////////
-
-		// SPANISH LATTE
-
-		JButton btnSpanishLatte = new JButton("Spanish Latte");
-		btnSpanishLatte.setBounds(275, 63, 234, 232);
-		addHoverEffect(btnSpanishLatte);
-		panelCold.add(btnSpanishLatte);
-		btnSpanishLatte.addActionListener(e -> {
-			lastClickedItem = "Spanish Latte";
-			addToOrder("Spanish Latte", menu.get("Spanish Latte"));
-		});
-
-		// AMERICANO
-
-		JButton btnAmericano = new JButton("Americano");
-		btnAmericano.setBounds(20, 63, 234, 232);
-		addHoverEffect(btnAmericano);
-		panelCold.add(btnAmericano);
-		btnAmericano.addActionListener(e -> {
-			lastClickedItem = "Americano";
-			addToOrder("Americano", menu.get("Americano"));
-		});
-
-		// WHITE MOCHA
-
-		JButton btnWhiteMocha = new JButton("White Mocha");
-		btnWhiteMocha.setBounds(20, 398, 234, 232);
-		addHoverEffect(btnWhiteMocha);
-		panelCold.add(btnWhiteMocha);
-		btnWhiteMocha.addActionListener(e -> {
-			lastClickedItem = "White Mocha";
-			addToOrder("White Mocha", menu.get("White Mocha"));
-		});
-
-		// CARAMEL MACCHIATO COLD
-
-		JButton btnCaramelMC = new JButton("Caramel Macchiato Cold");
-		btnCaramelMC.setBounds(275, 398, 234, 232);
-		addHoverEffect(btnCaramelMC);
-		panelCold.add(btnCaramelMC);
-		btnCaramelMC.addActionListener(e -> {
-			lastClickedItem = "Caramel Macchiato Cold";
-			addToOrder("Caramel Macchiato Cold", menu.get("Caramel Macchiato Cold"));
-		});
-
-		JLabel lblWhiteMocha = new JLabel("₱ 155");
-		lblWhiteMocha.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWhiteMocha.setBounds(30, 638, 212, 34);
-		panelCold.add(lblWhiteMocha);
-
-		JLabel lblCaramelMC = new JLabel("₱ 165");
-		lblCaramelMC.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaramelMC.setBounds(285, 638, 212, 34);
-		panelCold.add(lblCaramelMC);
-
-		JLabel lblAmericano = new JLabel("₱ 120");
-		lblAmericano.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmericano.setBounds(30, 306, 212, 34);
-		panelCold.add(lblAmericano);
-
-		JLabel lblSpanishLatte = new JLabel("₱ 160");
-		lblSpanishLatte.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSpanishLatte.setBounds(285, 306, 212, 34);
-		panelCold.add(lblSpanishLatte);
-		panelCold.setVisible(false);
-
 		JButton btnClearCart = new JButton("Clear Cart");
 		btnClearCart.setBounds(358, 840, 170, 35);
 		btnClearCart.setFont(new Font("Arial", Font.BOLD, 14));
@@ -458,72 +548,67 @@ public class Menu {
 		btnCold = new JButton("Cold");
 		btnCold.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCold.setBackground(normalColor);
-		btnCold.setForeground(Color.BLACK);
+		btnCold.setForeground(new Color(255, 255, 255));
 		btnCold.setBounds(37, 120, 140, 139);
 		addHoverEffect(btnCold);
 		btnCold.addActionListener(e -> {
-		    panelCold.setVisible(true);
-		    panelHot.setVisible(false);
-		    panelNon.setVisible(false);
-		    panelPastries.setVisible(false);
-		    highlightButton(btnCold);
+			panelCold.setVisible(true);
+			panelHot.setVisible(false);
+			panelNon.setVisible(false);
+			panelPastries.setVisible(false);
+			highlightButton(btnCold);
 		});
 		frame.getContentPane().add(btnCold);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(162, 114, 94));
-		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBounds(197, 43, 530, 719);
-		frame.getContentPane().add(panel_1);
 		btnCold.setBounds(37, 120, 140, 139);
 		frame.getContentPane().add(btnCold);
 
 		btnHot = new JButton("Hot");
 		btnHot.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnHot.setBackground(normalColor);
-		btnHot.setForeground(Color.BLACK);
+		btnHot.setForeground(new Color(255, 255, 255));
 		btnHot.setBounds(37, 287, 140, 139);
 		addHoverEffect(btnHot);
 		btnHot.addActionListener(e -> {
-		    panelHot.setVisible(true);
-		    panelCold.setVisible(false);
-		    panelNon.setVisible(false);
-		    panelPastries.setVisible(false);
-		    highlightButton(btnHot);
+			panelHot.setVisible(true);
+			panelCold.setVisible(false);
+			panelNon.setVisible(false);
+			panelPastries.setVisible(false);
+			highlightButton(btnHot);
 		});
 		frame.getContentPane().add(btnHot);
 
 		btnPastries = new JButton("Pastries");
 		btnPastries.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnPastries.setBackground(normalColor);
-		btnPastries.setForeground(Color.BLACK);
+		btnPastries.setForeground(new Color(255, 255, 255));
 		btnPastries.setBounds(37, 623, 140, 139);
 		addHoverEffect(btnPastries);
 		btnPastries.addActionListener(e -> {
-		    panelPastries.setVisible(true);
-		    panelCold.setVisible(false);
-		    panelHot.setVisible(false);
-		    panelNon.setVisible(false);
-		    highlightButton(btnPastries);
+			panelPastries.setVisible(true);
+			panelCold.setVisible(false);
+			panelHot.setVisible(false);
+			panelNon.setVisible(false);
+			highlightButton(btnPastries);
 		});
 		frame.getContentPane().add(btnPastries);
 
 		btnNonCof = new JButton("Non-Coffee");
 		btnNonCof.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNonCof.setBackground(normalColor);
-		btnNonCof.setForeground(Color.BLACK);
+		btnNonCof.setForeground(new Color(255, 255, 255));
 		btnNonCof.setBounds(37, 456, 140, 139);
 		addHoverEffect(btnNonCof);
 		btnNonCof.addActionListener(e -> {
-		    panelNon.setVisible(true);
-		    panelCold.setVisible(false);
-		    panelHot.setVisible(false);
-		    panelPastries.setVisible(false);
-		    highlightButton(btnNonCof);
+			panelNon.setVisible(true);
+			panelCold.setVisible(false);
+			panelHot.setVisible(false);
+			panelPastries.setVisible(false);
+			highlightButton(btnNonCof);
 		});
 		frame.getContentPane().add(btnNonCof);
 
 		JButton btnCont = new JButton("Continue");
+		btnCont.setForeground(new Color(255, 255, 255));
 		btnCont.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCont.setBackground(new Color(162, 114, 94));
 		btnCont.addActionListener(new ActionListener() {
@@ -543,9 +628,15 @@ public class Menu {
 		if (menubgUrl != null) {
 			lblmenubg.setIcon(new ImageIcon(menubgUrl));
 		}
-		lblmenubg.setBounds(0, 0, 752, 985);
+		
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(new Color(162, 114, 94));
+				panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				panel_1.setBounds(197, 43, 530, 719);
+				frame.getContentPane().add(panel_1);
+				panel_1.setLayout(null);
+		lblmenubg.setBounds(0, 0, 752, 1027);
 		frame.getContentPane().add(lblmenubg);
-
 	}
 
 	public void removeFromOrder(String itemName) {
@@ -624,14 +715,14 @@ public class Menu {
 	}
 
 	private void highlightButton(JButton selectedBtn) {
-	    btnCold.setBackground(normalColor);
-	    btnHot.setBackground(normalColor);
-	    btnNonCof.setBackground(normalColor);
-	    btnPastries.setBackground(normalColor);
-	    
-	    selectedBtn.setBackground(selectedColor);
+		btnCold.setBackground(normalColor);
+		btnHot.setBackground(normalColor);
+		btnNonCof.setBackground(normalColor);
+		btnPastries.setBackground(normalColor);
+
+		selectedBtn.setBackground(selectedColor);
 	}
-	
+
 	private void updateDisplay() {
 		textAreaOrder.setText("Order:\n");
 		for (String item : order.keySet()) {

@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Payment {
 
@@ -84,6 +85,8 @@ public class Payment {
 		updateOrderDisplay(order, total);
 
 		JButton btnBack = new JButton("Back");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(162, 114, 94));
 		btnBack.addActionListener(e -> {
 			Menu mainApp = new Menu();
 			mainApp.setVisible(true);
@@ -93,6 +96,8 @@ public class Payment {
 		frame.getContentPane().add(btnBack);
 
 		JButton btnContinue = new JButton("Continue");
+		btnContinue.setBackground(new Color(162, 114, 94));
+		btnContinue.setForeground(new Color(255, 255, 255));
 		btnContinue.addActionListener(e -> {
 			Receipt receipt = new Receipt(total, order);
 			receipt.setVisible(true);
