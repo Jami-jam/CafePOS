@@ -117,7 +117,7 @@ public class Menu {
 		// EGG TART
 
 		JButton btnEggTart = new JButton("");
-		btnEggTart.setBounds(285, 22, 226, 273);
+		btnEggTart.setBounds(285, 22, 226, 271);
 		addHoverEffect(btnEggTart);
 		panelPastries.add(btnEggTart);
 		URL eggTartURL = getClass().getResource("/icons/EggTart.png");
@@ -132,7 +132,7 @@ public class Menu {
 		// CHOCO COOKIES
 
 		JButton btnChocoC = new JButton("");
-		btnChocoC.setBounds(285, 371, 226, 272);
+		btnChocoC.setBounds(285, 371, 224, 270);
 		addHoverEffect(btnChocoC);
 		panelPastries.add(btnChocoC);
 		URL chocoCURL = getClass().getResource("/icons/ChocolateCookies.png");
@@ -246,7 +246,7 @@ public class Menu {
 		// MATCHA LATTE
 
 		JButton btnMatchaL = new JButton("");
-		btnMatchaL.setBounds(285, 22, 226, 273);
+		btnMatchaL.setBounds(285, 22, 225, 271);
 		addHoverEffect(btnMatchaL);
 		panelNon.add(btnMatchaL);
 		URL matchaLURL = getClass().getResource("/icons/MatchaLatte.png");
@@ -261,7 +261,7 @@ public class Menu {
 		// CLASSIC CHOCOLATE
 
 		JButton btnClassicC = new JButton("");
-		btnClassicC.setBounds(20, 22, 226, 273);
+		btnClassicC.setBounds(20, 22, 223, 273);
 		addHoverEffect(btnClassicC);
 		panelNon.add(btnClassicC);
 		URL classicCURL = getClass().getResource("/icons/ClassicChocolate.png");
@@ -324,7 +324,7 @@ public class Menu {
 		// BREWED
 
 		JButton btnBrewed = new JButton("");
-		btnBrewed.setBounds(20, 22, 226, 273);
+		btnBrewed.setBounds(20, 22, 226, 270	);
 		addHoverEffect(btnBrewed);
 		panelHot.add(btnBrewed);
 		URL brewedURL = getClass().getResource("/icons/Brewed.png");
@@ -339,7 +339,7 @@ public class Menu {
 		// CAFE LATTE
 
 		JButton btnCafeLatte = new JButton("");
-		btnCafeLatte.setBounds(285, 22, 226, 273);
+		btnCafeLatte.setBounds(285, 22, 224, 270);
 		addHoverEffect(btnCafeLatte);
 		panelHot.add(btnCafeLatte);
 		URL cafeLURL = getClass().getResource("/icons/CafeLatte.png");
@@ -354,7 +354,7 @@ public class Menu {
 		// ESPRESSO
 
 		JButton btnEspresso = new JButton("");
-		btnEspresso.setBounds(20, 371, 226, 273);
+		btnEspresso.setBounds(20, 371, 224, 271);
 		addHoverEffect(btnEspresso);
 		panelHot.add(btnEspresso);
 		URL espressoURL = getClass().getResource("/icons/Espresso.png");
@@ -369,7 +369,7 @@ public class Menu {
 		// CARAMEL MACCHIATO HOT
 
 		JButton btnCaramelMH = new JButton("");
-		btnCaramelMH.setBounds(285, 371, 226, 273);
+		btnCaramelMH.setBounds(285, 371, 224, 271);
 		addHoverEffect(btnCaramelMH);
 		panelHot.add(btnCaramelMH);
 		URL caramelMHURL = getClass().getResource("/icons/CaramelMacchiatoH.png");
@@ -402,7 +402,7 @@ public class Menu {
 		// SPANISH LATTE
 
 		JButton btnSpanishLatte = new JButton("");
-		btnSpanishLatte.setBounds(285, 22, 226, 273);
+		btnSpanishLatte.setBounds(285, 22, 223, 270);
 		addHoverEffect(btnSpanishLatte);
 		panelCold.add(btnSpanishLatte);
 		URL spanishLURL = getClass().getResource("/icons/SpanishLatte.png");
@@ -417,7 +417,7 @@ public class Menu {
 		// AMERICANO
 
 		JButton btnAmericano = new JButton("");
-		btnAmericano.setBounds(20, 22, 226, 273);
+		btnAmericano.setBounds(20, 22, 223, 273);
 		addHoverEffect(btnAmericano);
 		panelCold.add(btnAmericano);
 		URL americanoURL = getClass().getResource("/icons/Americano.png");
@@ -432,7 +432,7 @@ public class Menu {
 		// WHITE MOCHA
 
 		JButton btnWhiteMocha = new JButton("");
-		btnWhiteMocha.setBounds(20, 371, 226, 273);
+		btnWhiteMocha.setBounds(20, 371, 223, 270);
 		addHoverEffect(btnWhiteMocha);
 		panelCold.add(btnWhiteMocha);
 		URL whiteMURL = getClass().getResource("/icons/WhiteMocha.png");
@@ -447,7 +447,7 @@ public class Menu {
 		// CARAMEL MACCHIATO COLD
 
 		JButton btnCaramelMC = new JButton("");
-		btnCaramelMC.setBounds(285, 371, 226, 273);
+		btnCaramelMC.setBounds(285, 371, 223, 271);
 		addHoverEffect(btnCaramelMC);
 		panelCold.add(btnCaramelMC);
 		URL caramelMCURL = getClass().getResource("/icons/CaramelMacchiatoC.png");
